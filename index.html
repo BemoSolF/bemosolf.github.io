@@ -5,84 +5,87 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Terapias Holísticas</title>
   <style>
-  :root{
-   --blue1:#0d2239;     
-  --blue2:#1e5a7a;     
-  --black:#000000;  
-  --card-bg: rgba(255,255,255,0.04);
-  --accent: #00d9ff;    
-  --glass: rgba(255,255,255,0.06);
-  --max-width:1100px;
-  --radius:12px;
-} :root
-  html {
-  height: auto;
-}
+    :root{
+      --blue1:#0d2239;     
+      --blue2:#1e5a7a;     
+      --black:#000000;  
+      --card-bg: rgba(255,255,255,0.04);
+      --accent: #00d9ff;    
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
+      --radius:12px;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color: #e6f3ff;
-  background: linear-gradient(180deg, var(--blue2) 0%, var(--blue1) 50%, var(--black) 100%);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    html {
+      height: auto;
+    }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 60px 70px, #e0e0ff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 50px 50px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 130px 80px, #d0d0ff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 90px 10px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 10px 90px, #e0e0ff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 150px 20px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 170px 150px, #f0f0ff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 40px 10px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 110px 140px, #e0e0ff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 180px 80px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 30px 120px, #d0d0ff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 160px 40px, #f0f0ff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 75px 160px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 140px 100px, #e0e0ff, rgba(0,0,0,0));
-  background-repeat: repeat;
-  background-size: 200px 200px;
-   opacity: 0.08;
-  pointer-events: none;
-  z-index: 1;
-}
-}
-main {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #e6f3ff;
+      background: linear-gradient(180deg, var(--blue2) 0%, var(--blue1) 50%, var(--black) 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 60px 70px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 50px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 130px 80px, #d0d0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 10px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 10px 90px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 20px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 170px 150px, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 10px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 110px 140px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 30px 120px, #d0d0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 40px, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 75px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 140px 100px, #e0e0ff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
     header{
-  backdrop-filter: blur(6px);
-  background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .container{ max-width:var(--max-width); margin: 28px auto; padding: 0 18px; }
 
     .brand{
@@ -92,30 +95,45 @@ main {
       font-weight:700;
       font-size:18px;
     }
+
     .brand .logo{
       width:48px; height:48px; border-radius:10px;
       background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
       display:flex; align-items:center; justify-content:center;
       box-shadow: inset 0 -6px 14px rgba(0,0,0,0.25);
     }
-nav .nav-buttons{ 
-  display: flex; 
-  gap: 10px; 
-}
 
-.menu-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  color: #e6f3ff;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 8px;
-}
+    nav .nav-buttons{ 
+      display: flex; 
+      gap: 10px; 
+    }
 
-.nav-desktop {
-  display: flex;
-}
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: #e6f3ff;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .nav-desktop {
+      display: flex;
+    }
+
+    .btn{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color:inherit;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      transition: all .18s ease;
+      text-decoration:none;
+      font-size:15px;
+    }
+
     .btn:hover{ transform:translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.03); }
 
     /* Hero / Tags */
@@ -209,14 +227,14 @@ nav .nav-buttons{
     }
 
     footer{ 
-  text-align: center; 
-  padding: 24px 18px; 
-  color: #cdeeff; 
-  opacity: 0.9;
-  margin-top: auto;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
+      text-align: center; 
+      padding: 24px 18px; 
+      color: #cdeeff; 
+      opacity: 0.9;
+      margin-top: auto;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
 
     /* Certifications section */
     #certifications{
@@ -228,138 +246,118 @@ nav .nav-buttons{
     .cert-grid{ display:flex; gap:12px; flex-wrap:wrap; }
     .cert{ min-width:150px; background:var(--glass); padding:10px;border-radius:8px; text-align:center; }
 
-   @media (max-width:880px){
-  header{ 
-    padding: 12px; 
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .brand {
-    flex: 1;
-  }
-  nav {
-    flex: 1;
-    text-align: right;
-  }
-  nav .nav-buttons {
-    justify-content: flex-end;
-  }
-  .hero{ 
-    flex-direction: column-reverse; 
-  }
-  .practitioner{ 
-    width: 100%; 
-    max-width: 100%;
-  }
-  .brand {
-    font-size: 16px;
-  }
-  .brand .logo {
-    width: 40px;
-    height: 40px;
-  }
-  nav .nav-buttons {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .btn {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  .tags {
-    grid-template-columns: 1fr;
-  }
-  .tag {
-    padding: 12px;
-  }
-  .tag h3 {
-    font-size: 16px;
-  }
-  .tag p {
-    font-size: 13px;
-  }
-  .container {
-    margin: 16px auto;
-    padding: 0 12px;
-  }
-  h1 {
-    font-size: 24px;
-  }
-  h2 {
-    font-size: 20px;
-  }
-  .appointment {
-    padding: 14px;
-  }
-  .appointment input, 
-  .appointment textarea, 
-  .appointment select {
-    padding: 8px 10px;
-    font-size: 16px;
-  }
-  .courses {
-    grid-template-columns: 1fr;
-  }
-       .menu-toggle {
-    display: block;
-  }
-  
-  .nav-desktop {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, rgba(13,34,57,0.95), rgba(0,0,0,0.95));
-    backdrop-filter: blur(6px);
-    flex-direction: column;
-    padding: 12px;
-    gap: 8px;
-    z-index: 9;
-  }
-  
-  .nav-desktop.active {
-    display: flex;
-  }
-  
-  .nav-desktop .nav-buttons {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .nav-desktop .btn {
-    width: 100%;
-    text-align: left;
-  }
-}
-}
+    @media (max-width:880px){
+      header{ 
+        padding: 12px; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .brand {
+        font-size: 16px;
+      }
+      .brand .logo {
+        width: 40px;
+        height: 40px;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      
+      .nav-desktop {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, rgba(13,34,57,0.95), rgba(0,0,0,0.95));
+        backdrop-filter: blur(6px);
+        flex-direction: column;
+        padding: 12px;
+        gap: 8px;
+        z-index: 9;
+      }
+      
+      .nav-desktop.active {
+        display: flex;
+      }
+      
+      .nav-desktop .nav-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .nav-desktop .btn {
+        width: 100%;
+        text-align: left;
+      }
+      .hero{ 
+        flex-direction: column-reverse; 
+      }
+      .practitioner{ 
+        width: 100%; 
+        max-width: 100%;
+      }
+      .nav-buttons {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+      .tags {
+        grid-template-columns: 1fr;
+      }
+      .tag {
+        padding: 12px;
+      }
+      .tag h3 {
+        font-size: 16px;
+      }
+      .tag p {
+        font-size: 13px;
+      }
+      .container {
+        margin: 16px auto;
+        padding: 0 12px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      .appointment {
+        padding: 14px;
+      }
+      .appointment input, 
+      .appointment textarea, 
+      .appointment select {
+        padding: 8px 10px;
+        font-size: 16px;
+      }
+      .courses {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <header>
-  <div class="brand">
-    <div class="logo">🌙</div>
-    <div>
-      <div>Terapias Holísticas</div>
-      <div style="font-size:12px; opacity:0.8;">Equilibrio, bienestar y atención personalizada</div>
+    <div class="brand">
+      <div class="logo">🌙</div>
+      <div>
+        <div>Terapias Holísticas</div>
+        <div style="font-size:12px; opacity:0.8;">Equilibrio, bienestar y atención personalizada</div>
+      </div>
     </div>
-  </div>
-  <button class="menu-toggle" id="menuToggle">☰</button>
-  <nav class="nav-desktop" id="navMenu">
-    <div class="nav-buttons">
-      <a href="#turno" class="btn">Turno</a>
-      <a href="#cursos" class="btn">Curso</a>
-      <a href="#libro" class="btn">Libro</a>
-    </div>
-  </nav>
-</header>
-    <nav class="container" style="display:flex;justify-content:flex-end">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="nav-desktop" id="navMenu">
       <div class="nav-buttons">
-        <a class="btn" href="#turno">Turno</a>
-        <a class="btn" href="#cursos">Curso</a>
-        <a class="btn" href="#libro">Libro</a>
+        <a href="#turno" class="btn">Turno</a>
+        <a href="#cursos" class="btn">Curso</a>
+        <a href="#libro" class="btn">Libro</a>
       </div>
     </nav>
   </header>
@@ -386,7 +384,6 @@ nav .nav-buttons{
 
       <aside class="practitioner" aria-labelledby="pract-name">
         <div class="photo" id="photo-click" title="Ver certificaciones">
-          <!-- Reemplaza la imagen por la tuya -->
           <img src="https://via.placeholder.com/400x400.png?text=Foto+Practicioner" alt="Foto de la practicante" />
         </div>
         <div class="bio">
@@ -504,59 +501,73 @@ nav .nav-buttons{
   </main>
 
   <script>
-    // Cargar config.json dinámicamente
-(async function loadConfig(){
-  try{
-    const res = await fetch('./config.json');
-    if(!res.ok) throw new Error('Error: ' + res.status);
-    const cfg = await res.json();
-
-    // Guardar en CONFIG global
-    window.CONFIG = {
-      phone: cfg.phone || '5491123456789',
-      googleCalendarUrl: cfg.googleCalendarUrl || 'https://calendar.google.com/calendar/u/0/r',
-      siteName: cfg.siteName || 'Terapias Holísticas'
-    };
-
-    // Actualizar título
-    document.title = cfg.siteName || document.title;
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
     
-    // Actualizar nombre del practicante
-    const practNameEl = document.getElementById('pract-name');
-    if(practNameEl) practNameEl.textContent = cfg.practitioner?.name || 'Nombre Apellido';
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
     
-    // Actualizar foto
-    const photoImg = document.querySelector('.photo img');
-    if(cfg.practitioner?.photo && photoImg) photoImg.src = cfg.practitioner.photo;
-
-    // Generar cursos desde config.json
-    const coursesContainer = document.querySelector('.courses');
-    if(cfg.courses && coursesContainer){
-      coursesContainer.innerHTML = '';
-      cfg.courses.forEach(c => {
-        const div = document.createElement('div');
-        div.className = 'course';
-        div.innerHTML = `
-          <h4>${c.title}</h4>
-          <p>${c.description || ''}</p>
-          <div class="payments">
-            ${(c.payments || []).map(p => `<div class="pay-badge">${p}</div>`).join('')}
-          </div>
-        `;
-        coursesContainer.appendChild(div);
+    // Cerrar menú al hacer clic en un link
+    document.querySelectorAll('.nav-desktop a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
       });
-    }
+    });
 
-    console.log('✓ Config cargada:', cfg);
-  }catch(err){
-    console.error('✗ Error:', err);
-    window.CONFIG = {
-      phone: '5491123456789',
-      googleCalendarUrl: 'https://calendar.google.com/calendar/u/0/r',
-      siteName: 'Terapias Holísticas'
-    };
-  }
-})();
+    // Cargar config.json dinámicamente
+    (async function loadConfig(){
+      try{
+        const res = await fetch('./config.json');
+        if(!res.ok) throw new Error('Error: ' + res.status);
+        const cfg = await res.json();
+
+        // Guardar en CONFIG global
+        window.CONFIG = {
+          phone: cfg.phone || '5491123456789',
+          googleCalendarUrl: cfg.googleCalendarUrl || 'https://calendar.google.com/calendar/u/0/r',
+          siteName: cfg.siteName || 'Terapias Holísticas'
+        };
+
+        // Actualizar título
+        document.title = cfg.siteName || document.title;
+        
+        // Actualizar nombre del practicante
+        const practNameEl = document.getElementById('pract-name');
+        if(practNameEl) practNameEl.textContent = cfg.practitioner?.name || 'Nombre Apellido';
+        
+        // Actualizar foto
+        const photoImg = document.querySelector('.photo img');
+        if(cfg.practitioner?.photo && photoImg) photoImg.src = cfg.practitioner.photo;
+
+        // Generar cursos desde config.json
+        const coursesContainer = document.querySelector('.courses');
+        if(cfg.courses && coursesContainer){
+          coursesContainer.innerHTML = '';
+          cfg.courses.forEach(c => {
+            const div = document.createElement('div');
+            div.className = 'course';
+            div.innerHTML = `
+              <h4>${c.title}</h4>
+              <p>${c.description || ''}</p>
+              <div class="payments">
+                ${(c.payments || []).map(p => `<div class="pay-badge">${p}</div>`).join('')}
+              </div>
+            `;
+            coursesContainer.appendChild(div);
+          });
+        }
+
+        console.log('✓ Config cargada:', cfg);
+      }catch(err){
+        console.error('✗ Error:', err);
+        window.CONFIG = {
+          phone: '5491123456789',
+          googleCalendarUrl: 'https://calendar.google.com/calendar/u/0/r',
+          siteName: 'Terapias Holísticas'
+        };
+      }
+    })();
   </script>
 </body>
 </html>
