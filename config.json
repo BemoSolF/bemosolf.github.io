@@ -1,0 +1,27 @@
+{
+  "siteName": "Terapias Holísticas",
+  "phone": "5493834263712",
+  "googleCalendarUrl": "https://calendar.google.com/calendar/u/0/r",
+  "practitioner": {
+    "name": "Tu Nombre Completo",
+    "bio": "Terapeuta holística con X años de experiencia acompañando procesos de bienestar.",
+    "photo": "https://buddhoom.com/wp-content/uploads/2024/03/T.H-Queson-B.jpg"
+  },
+  "courses": [
+    {
+      "title": "Curso de Reiki - Nivel 1",
+      "description": "Teoría, prácticas y pases energéticos. Duración: 2 días.",
+      "payments": ["PayPal: paypal.me/tuusuario", "MercadoPago", "Transferencia"]
+    },
+    {
+      "title": "Taller de Aromaterapia",
+      "description": "Elaboración de blends personales y uso terapéutico.",
+      "payments": ["MercadoPago", "Efectivo"]
+    },
+    {
+      "title": "Capacitación en Flores de Bach",
+      "description": "Diagnóstico emocional y combinaciones de esencias.",
+      "payments": ["PayPal", "Transferencia"]
+    }
+  ]
+}
