@@ -135,13 +135,13 @@
     .btn:hover{ transform:translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.03); }
 
     /* Hero / Tags */
-    .hero{ display:flex; gap:24px; align-items:flex-start; margin-top:18px; flex-wrap:wrap; }
-    .tags{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-      flex:1 1 520px;
-    }
+   .hero{ display:flex; flex-direction:column; align-items:center; gap:24px; margin-top:18px; }
+   .tags{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  width:100%;
+}
     .tag{
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:var(--radius);
@@ -297,13 +297,12 @@
         width: 100%;
         text-align: left;
       }
-      .hero{ 
-        flex-direction: column-reverse; 
+     
       }
       .practitioner{ 
-        width: 100%; 
-        max-width: 100%;
-      }
+  width: 100%; 
+  max-width: 420px;
+}
       .nav-buttons {
         flex-wrap: wrap;
         gap: 8px;
