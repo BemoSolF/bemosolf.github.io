@@ -1,4 +1,5 @@
-<!doctype html>
+
+  <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -6,11 +7,11 @@
   <title>Terapias Holísticas</title>
   <style>
     :root{
-      --blue1:#0d2239;     
-      --blue2:#1e5a7a;     
-      --black:#000000;  
+      --blue1:#3d2a5c;     
+      --blue2:#7a4fa1;     
+      --black:#1a0033;  
       --card-bg: rgba(255,255,255,0.04);
-      --accent: #00d9ff;    
+      --accent: #d4a8ff;    
       --glass: rgba(255,255,255,0.06);
       --max-width:1100px;
       --radius:12px;
@@ -205,7 +206,7 @@
     .small-note{ font-size:13px; color:#bfe7ff; opacity:0.9; }
 
     .primary{
-      background: linear-gradient(90deg, var(--accent), #409cff);
+      background: linear-gradient(90deg, var(--accent), #8a5cf6);
       color:#012;
       border:none;
       padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
@@ -275,7 +276,7 @@
         top: 60px;
         left: 0;
         right: 0;
-        background: linear-gradient(180deg, rgba(13,34,57,0.95), rgba(0,0,0,0.95));
+        background: linear-gradient(180deg, rgba(61,42,92,0.95), rgba(26,0,51,0.95));
         backdrop-filter: blur(6px);
         flex-direction: column;
         padding: 12px;
@@ -360,10 +361,10 @@
 <body>
   <header>
     <div class="brand">
-      <div class="logo">🌙</div>
+      <div class="logo" aria-hidden="true">☯</div>
       <div>
-        <div>Terapias Holísticas</div>
-        <div style="font-size:12px; opacity:0.8;">Equilibrio, bienestar y atención personalizada</div>
+        <div style="font-size:18px">Terapias Holísticas</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio, bienestar y atención personalizada</div>
       </div>
     </div>
     <button class="menu-toggle" id="menuToggle">☰</button>
@@ -398,6 +399,7 @@
 
       <aside class="practitioner" aria-labelledby="pract-name">
         <div class="photo" id="photo-click" title="Ver certificaciones">
+          <!-- Reemplaza la imagen por la tuya -->
           <img src="https://via.placeholder.com/400x400.png?text=Foto+Practicioner" alt="Foto de la practicante" />
         </div>
         <div class="bio">
