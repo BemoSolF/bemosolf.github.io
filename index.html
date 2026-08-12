@@ -1,1 +1,393 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Terapias Holísticas</title>
+  <style>
+    :root{
+      --blue1:#3d2a5c;     
+  --blue2:#7a4fa1;     
+  --black:#1a0033;     
+  --card-bg: rgba(255,255,255,0.04);
+  --accent: #d4a8ff;    
+  --glass: rgba(255,255,255,0.06)
+  --max-width:1100px;
+  --radius:12px;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #e6f3ff;
+      background: linear-gradient(180deg, var(--blue2) 0%, var(--blue1) 50%, var(--black) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
+    header{
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .container{ max-width:var(--max-width); margin: 28px auto; padding: 0 18px; }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      font-size:18px;
+    }
+    .brand .logo{
+      width:48px; height:48px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: inset 0 -6px 14px rgba(0,0,0,0.25);
+    }
+
+    nav .nav-buttons{ display:flex; gap:10px; }
+    .btn{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color:inherit;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      transition: all .18s ease;
+      text-decoration:none;
+      font-size:15px;
+    }
+    .btn:hover{ transform:translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.03); }
+
+    /* Hero / Tags */
+    .hero{ display:flex; gap:24px; align-items:flex-start; margin-top:18px; flex-wrap:wrap; }
+    .tags{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      flex:1 1 520px;
+    }
+    .tag{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      transition: transform .14s ease;
+      cursor:pointer;
+      text-decoration:none;
+      color:inherit;
+    }
+    .tag:hover{ transform:translateY(-6px); }
+    .tag h3{ margin:0 0 8px 0; font-size:18px; }
+    .tag p{ margin:0; color: #cfeaff; opacity:0.9; font-size:14px; }
+
+    .more-tag{ display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; gap:10px; padding:22px; }
+
+    /* Practitioner card */
+    .practitioner{
+      width:320px;
+      min-width:260px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+    .photo{
+      width:160px; height:160px; border-radius:14px; overflow:hidden; border:3px solid rgba(255,255,255,0.06);
+      cursor:pointer;
+      background: linear-gradient(45deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .bio{ text-align:center; color:#dff3ff; }
+    .certs-link{ color:var(--accent); text-decoration:underline; cursor:pointer; }
+
+    /* Appointment form */
+    .appointment{
+      margin:28px 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;
+      border-radius:var(--radius);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+      display:grid;
+      gap:12px;
+      max-width:720px;
+    }
+    .appointment label{ font-size:13px; color:#cfeaff; }
+    .appointment input, .appointment textarea, .appointment select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.25);
+      color: #e8f8ff;
+      resize:vertical;
+    }
+    .row{ display:flex; gap:12px; }
+    .row> *{ flex:1; }
+    .small-note{ font-size:13px; color:#bfe7ff; opacity:0.9; }
+
+    .primary{
+      background: linear-gradient(90deg, var(--accent), #409cff);
+      color:#012;
+      border:none;
+      padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
+    }
+
+    /* Courses section */
+    .courses{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:48px; margin-top:10px; }
+    .course{
+      background:var(--card-bg);
+      padding:14px;border-radius:10px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+    .payments{ display:flex; gap:8px; margin-top:10px; align-items:center; }
+    .pay-badge{
+      padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.03); font-size:13px;
+    }
+
+    footer{ text-align:center; padding:40px 18px; color:#cdeeff; opacity:0.9; }
+
+    /* Certifications section */
+    #certifications{
+      margin-top:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:18px;border-radius:12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    }
+    .cert-grid{ display:flex; gap:12px; flex-wrap:wrap; }
+    .cert{ min-width:150px; background:var(--glass); padding:10px;border-radius:8px; text-align:center; }
+
+    @media (max-width:880px){
+      header{ padding:12px; }
+      .hero{ flex-direction:column-reverse; }
+      .practitioner{ width:100%; max-width:420px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand container" style="justify-content:flex-start;">
+      <div class="logo" aria-hidden="true">☯</div>
+      <div>
+        <div style="font-size:18px">Terapias Holísticas</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio, bienestar y atención personalizada</div>
+      </div>
+    </div>
+
+    <nav class="container" style="display:flex;justify-content:flex-end">
+      <div class="nav-buttons">
+        <a class="btn" href="#turno">Turno</a>
+        <a class="btn" href="#cursos">Curso</a>
+        <a class="btn" href="#libro">Libro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="tags" aria-label="Terapias principales">
+        <a class="tag" href="#terapia1">
+          <h3>Reiki</h3>
+          <p>Equilibrio energético, sanación emocional y relajación profunda.</p>
+        </a>
+        <a class="tag" href="#terapia2">
+          <h3>Aromaterapia</h3>
+          <p>Uso de esencias para armonizar el ánimo y aliviar el estrés.</p>
+        </a>
+        <a class="tag" href="#terapia3">
+          <h3>Terapia Floral</h3>
+          <p>Apoyo emocional mediante esencias florales personalizadas.</p>
+        </a>
+        <a class="tag more-tag" href="#otras-terapias">
+          <span>+ Más terapias</span>
+        </a>
+      </div>
+
+      <aside class="practitioner" aria-labelledby="pract-name">
+        <div class="photo" id="photo-click" title="Ver certificaciones">
+          <!-- Reemplaza la imagen por la tuya -->
+          <img src="https://via.placeholder.com/400x400.png?text=Foto+Practicioner" alt="Foto de la practicante" />
+        </div>
+        <div class="bio">
+          <div id="pract-name" style="font-weight:700; font-size:16px;">Nombre Apellido</div>
+          <div class="small-note">Terapeuta holística | Reiki, Aromaterapia, Flores</div>
+          <p style="margin-top:8px; font-size:14px">Trabajo personalizado con respeto, éticas y técnicas certificadas para acompañarte en tu proceso de bienestar.</p>
+          <div class="certs-link" onclick="document.getElementById('certifications').scrollIntoView({behavior:'smooth'})">Ver certificaciones ↗</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Presentación breve -->
+    <section style="margin-top:18px; max-width:900px;">
+      <div style="background:var(--glass); padding:14px; border-radius:10px;">
+        <h2 style="margin:0 0 8px 0">Hola — Soy Nombre Apellido</h2>
+        <p style="margin:0;color:#dff3ff;">Con más de X años de experiencia acompañando a personas en procesos de sanación emocional y energía. Si querés, reservá un turno abajo o escribime por WhatsApp.</p>
+      </div>
+    </section>
+
+    <!-- Turno / Form -->
+    <section id="turno" style="margin-top:20px;">
+      <div class="appointment" role="form" aria-labelledby="turno-title">
+        <h3 id="turno-title" style="margin:0 0 6px 0;">Pedir turno</h3>
+        <form id="turnoForm">
+          <div class="row">
+            <div>
+              <label for="name">Nombre</label>
+              <input id="name" name="name" required placeholder="Tu nombre" />
+            </div>
+            <div>
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" placeholder="Ej: 1155554444" />
+            </div>
+          </div>
+
+          <label for="date">Fecha preferida</label>
+          <input id="date" name="date" type="date" />
+
+          <label for="time">Hora aproximada</label>
+          <input id="time" name="time" type="time" />
+
+          <label for="message">Mensaje / Motivo</label>
+          <textarea id="message" name="message" rows="3" placeholder="Breve motivo o comentario"></textarea>
+
+          <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+            <button class="primary" type="submit">Solicitar por WhatsApp</button>
+            <button type="button" class="btn" id="calendarFallbackBtn">Ir al calendario</button>
+            <div style="flex:1" class="small-note">Se intentará abrir WhatsApp; si no logra abrirse, se redirige al calendario.</div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Certificaciones -->
+    <section id="certifications" style="margin-top:20px;">
+      <h3>Certificaciones</h3>
+      <div class="cert-grid" aria-live="polite">
+        <div class="cert">
+          <img src="https://via.placeholder.com/220x120.png?text=Certificado+1" alt="Certificado 1" style="width:100%; border-radius:6px" />
+          <div style="margin-top:8px; font-size:13px">Curso XYZ - Institución A</div>
+        </div>
+        <div class="cert">
+          <img src="https://via.placeholder.com/220x120.png?text=Certificado+2" alt="Certificado 2" style="width:100%; border-radius:6px" />
+          <div style="margin-top:8px; font-size:13px">Formación en Reiki - Escuela B</div>
+        </div>
+        <div class="cert">
+          <img src="https://via.placeholder.com/220x120.png?text=Certificado+3" alt="Certificado 3" style="width:100%; border-radius:6px" />
+          <div style="margin-top:8px; font-size:13px">Aromaterapia - Instituto C</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cursos y métodos de pago -->
+    <section id="cursos" style="margin-top:26px;">
+      <h3>Cursos y capacitaciones</h3>
+      <div class="courses">
+        <div class="course">
+          <h4>Curso de Reiki - Nivel 1</h4>
+          <p>Teoría, prácticas y pases energéticos. Duración: 2 días.</p>
+          <div class="payments">
+            <div class="pay-badge">PayPal: paypal.me/tuusuario</div>
+            <div class="pay-badge">MercadoPago</div>
+            <div class="pay-badge">Transferencia</div>
+          </div>
+        </div>
+
+        <div class="course">
+          <h4>Taller de Aromaterapia</h4>
+          <p>Elaboración de blends personales y uso terapéutico.</p>
+          <div class="payments">
+            <div class="pay-badge">MercadoPago</div>
+            <div class="pay-badge">Efectivo</div>
+          </div>
+        </div>
+
+        <div class="course">
+          <h4>Capacitación en Flores de Bach</h4>
+          <p>Diagnóstico emocional y combinaciones de esencias.</p>
+          <div class="payments">
+            <div class="pay-badge">PayPal</div>
+            <div class="pay-badge">Transferencia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="otras-terapias" style="margin-top:10px;">
+      <h3>Otras terapias</h3>
+      <p>Listado o sección con otras terapias disponibles (masajes, terapia energética avanzada, coaching holístico, etc.). Puedes enlazar aquí a páginas internas o abrir un modal con más info.</p>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Terapias Holísticas — contacto y reservas por WhatsApp</div>
+    </footer>
+  </main>
+
+  <script>
+    // Cargar config.json dinámicamente
+(async function loadConfig(){
+  try{
+    const res = await fetch('./config.json');
+    if(!res.ok) throw new Error('Error: ' + res.status);
+    const cfg = await res.json();
+
+    // Guardar en CONFIG global
+    window.CONFIG = {
+      phone: cfg.phone || '5491123456789',
+      googleCalendarUrl: cfg.googleCalendarUrl || 'https://calendar.google.com/calendar/u/0/r',
+      siteName: cfg.siteName || 'Terapias Holísticas'
+    };
+
+    // Actualizar título
+    document.title = cfg.siteName || document.title;
+    
+    // Actualizar nombre del practicante
+    const practNameEl = document.getElementById('pract-name');
+    if(practNameEl) practNameEl.textContent = cfg.practitioner?.name || 'Nombre Apellido';
+    
+    // Actualizar foto
+    const photoImg = document.querySelector('.photo img');
+    if(cfg.practitioner?.photo && photoImg) photoImg.src = cfg.practitioner.photo;
+
+    // Generar cursos desde config.json
+    const coursesContainer = document.querySelector('.courses');
+    if(cfg.courses && coursesContainer){
+      coursesContainer.innerHTML = '';
+      cfg.courses.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'course';
+        div.innerHTML = `
+          <h4>${c.title}</h4>
+          <p>${c.description || ''}</p>
+          <div class="payments">
+            ${(c.payments || []).map(p => `<div class="pay-badge">${p}</div>`).join('')}
+          </div>
+        `;
+        coursesContainer.appendChild(div);
+      });
+    }
+
+    console.log('✓ Config cargada:', cfg);
+  }catch(err){
+    console.error('✗ Error:', err);
+    window.CONFIG = {
+      phone: '5491123456789',
+      googleCalendarUrl: 'https://calendar.google.com/calendar/u/0/r',
+      siteName: 'Terapias Holísticas'
+    };
+  }
+})();
+  </script>
+</body>
+</html>
