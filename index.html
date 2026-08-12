@@ -1,5 +1,5 @@
 
-  <!doctype html>
+ <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -560,7 +560,7 @@
 
         // Guardar en CONFIG global
         window.CONFIG = {
-          phone: cfg.phone || '5493834263712',
+          phone: cfg.phone || '5491123456789',
           googleCalendarUrl: cfg.googleCalendarUrl || 'https://calendar.google.com/calendar/u/0/r',
           siteName: cfg.siteName || 'Terapias Holísticas'
         };
@@ -604,6 +604,44 @@
         };
       }
     })();
+
+    // Envío del formulario de turno por WhatsApp
+    const turnoForm = document.getElementById('turnoForm');
+    const calendarFallbackBtn = document.getElementById('calendarFallbackBtn');
+
+    turnoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const message = document.getElementById('message').value.trim();
+
+      const partes = [
+        `Hola, quiero pedir un turno.`,
+        `Nombre: ${name}`,
+        phone ? `Mi teléfono: ${phone}` : null,
+        date ? `Fecha preferida: ${date}` : null,
+        time ? `Hora aproximada: ${time}` : null,
+        message ? `Motivo: ${message}` : null
+      ].filter(Boolean);
+
+      const texto = encodeURIComponent(partes.join('\n'));
+      const numeroDestino = (window.CONFIG && window.CONFIG.phone) || '5491123456789';
+      const urlWhatsApp = `https://wa.me/${numeroDestino}?text=${texto}`;
+
+      const nuevaVentana = window.open(urlWhatsApp, '_blank');
+
+      // Si el navegador bloqueó la apertura, redirige al calendario como respaldo
+      if (!nuevaVentana) {
+        window.location.href = (window.CONFIG && window.CONFIG.googleCalendarUrl) || 'https://calendar.google.com/calendar/u/0/r';
+      }
+    });
+
+    calendarFallbackBtn.addEventListener('click', () => {
+      window.open((window.CONFIG && window.CONFIG.googleCalendarUrl) || 'https://calendar.google.com/calendar/u/0/r', '_blank');
+    });
   </script>
 </body>
 </html>
