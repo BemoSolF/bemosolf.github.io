@@ -62,17 +62,19 @@ main {
 }
 
     header{
-      backdrop-filter: blur(6px);
-      background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
-      padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      position:sticky;
-      top:0;
-      z-index:10;
-    }
+  backdrop-filter: blur(6px);
+  background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-wrap: wrap;
+  gap: 12px;
+}
     .container{ max-width:var(--max-width); margin: 28px auto; padding: 0 18px; }
 
     .brand{
@@ -205,11 +207,22 @@ main {
     .cert-grid{ display:flex; gap:12px; flex-wrap:wrap; }
     .cert{ min-width:150px; background:var(--glass); padding:10px;border-radius:8px; text-align:center; }
 
-    @media (max-width:880px){
+   @media (max-width:880px){
   header{ 
     padding: 12px; 
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    flex: 1;
+  }
+  nav {
+    flex: 1;
+    text-align: right;
+  }
+  nav .nav-buttons {
+    justify-content: flex-end;
   }
   .hero{ 
     flex-direction: column-reverse; 
