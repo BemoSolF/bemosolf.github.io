@@ -142,16 +142,25 @@
   gap:16px;
   width:100%;
 }
-    .tags{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,260px));
-  gap:16px;
-  justify-content:center;
-  width:100%;
+.tag{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(212,168,255,0.2);
+  border-radius:var(--radius);
+  padding:20px 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transition: transform .14s ease, border-color .14s ease;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
-    .tag:hover{ transform:translateY(-6px); }
-    .tag h3{ margin:0 0 8px 0; font-size:18px; }
-    .tag p{ margin:0; color: #cfeaff; opacity:0.9; font-size:14px; }
+.tag:hover{ transform:translateY(-6px); border-color: var(--accent); }
+.tag-icon{ font-size:24px; }
+.tag h3{ margin:0; font-size:17px; }
+.tag p{ margin:0; color: #cfeaff; opacity:0.85; font-size:13px; flex:1; }
+.tag-more{ color:var(--accent); font-size:13px; font-weight:600; margin-top:4px; }
 
     .more-tag{ display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; gap:10px; padding:22px; }
 
@@ -375,24 +384,33 @@
 
   <main class="container">
     <section class="hero" id="terapias">
-      <div class="tags" aria-label="Terapias principales">
-        <a class="tag" href="#terapia1">
-          <h3>Reiki</h3>
-          <p>Equilibrio energético, sanación emocional y relajación profunda.</p>
-        </a>
-        <a class="tag" href="#terapia2">
-          <h3>Aromaterapia</h3>
-          <p>Uso de esencias para armonizar el ánimo y aliviar el estrés.</p>
-        </a>
-        <a class="tag" href="#terapia3">
-          <h3>Terapia Floral</h3>
-          <p>Apoyo emocional mediante esencias florales personalizadas.</p>
-        </a>
-        <a class="tag more-tag" href="#otras-terapias">
-          <span>+ Más terapias</span>
-        </a>
-      </div>
-
+      <div style="text-align:center; margin-bottom:4px;">
+  <div style="color:var(--accent); font-size:14px; letter-spacing:1px; text-transform:uppercase;">✦ Nuestras Terapias</div>
+</div>
+<div class="tags" aria-label="Terapias principales">
+  <a class="tag" href="#terapia1">
+    <div class="tag-icon">🤲</div>
+    <h3>Reiki</h3>
+    <p>Equilibrio energético, sanación emocional y relajación profunda.</p>
+    <span class="tag-more">Saber más →</span>
+  </a>
+  <a class="tag" href="#terapia2">
+    <div class="tag-icon">🌿</div>
+    <h3>Aromaterapia</h3>
+    <p>Uso de esencias para armonizar el ánimo y aliviar el estrés.</p>
+    <span class="tag-more">Saber más →</span>
+  </a>
+  <a class="tag" href="#terapia3">
+    <div class="tag-icon">🌸</div>
+    <h3>Terapia Floral</h3>
+    <p>Apoyo emocional mediante esencias florales personalizadas.</p>
+    <span class="tag-more">Saber más →</span>
+  </a>
+  <a class="tag more-tag" href="#otras-terapias">
+    <div class="tag-icon">✨</div>
+    <span>+ Más terapias</span>
+  </a>
+</div>
       <aside class="practitioner" aria-labelledby="pract-name">
         <div class="photo" id="photo-click" title="Ver certificaciones">
           <!-- Reemplaza la imagen por la tuya -->
