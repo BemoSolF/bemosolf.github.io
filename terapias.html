@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nuestras Terapias — Terapias Holísticas</title>
+  <style>
+    :root{
+      --blue1:#3d2a5c;     
+      --blue2:#7a4fa1;     
+      --black:#1a0033;  
+      --card-bg: rgba(255,255,255,0.04);
+      --accent: #d4a8ff;    
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
+      --radius:12px;
+    }
+
+    html { height: auto; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #e6f3ff;
+      background: linear-gradient(180deg, var(--blue2) 0%, var(--blue1) 50%, var(--black) 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 60px 70px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 50px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 130px 80px, #d0d0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 10px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 10px 90px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 20px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 170px 150px, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 10px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 110px 140px, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 30px 120px, #d0d0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 40px, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 75px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 140px 100px, #e0e0ff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    main { position: relative; z-index: 2; flex: 1; }
+
+    header{
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .container{ max-width:var(--max-width); margin: 28px auto; padding: 0 18px; }
+
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; }
+    .brand .logo{
+      width:48px; height:48px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: inset 0 -6px 14px rgba(0,0,0,0.25);
+    }
+
+    nav .nav-buttons{ display: flex; gap: 10px; }
+
+    .menu-toggle {
+      display: none; background: transparent; border: none;
+      color: #e6f3ff; font-size: 24px; cursor: pointer; padding: 8px;
+    }
+
+    .nav-desktop { display: flex; }
+
+    .btn{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      color:inherit; padding:10px 14px; border-radius:8px;
+      cursor:pointer; transition: all .18s ease;
+      text-decoration:none; font-size:15px;
+    }
+    .btn:hover{ transform:translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); background: rgba(255,255,255,0.03); }
+
+    .primary{
+      background: linear-gradient(90deg, var(--accent), #8a5cf6);
+      color:#012; border:none;
+      padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
+      text-decoration:none; display:inline-block;
+    }
+
+    /* Page intro */
+    .page-intro{ margin-top:18px; max-width:760px; }
+    .page-intro .eyebrow{ color:var(--accent); font-size:14px; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .page-intro h1{ margin:0 0 12px 0; font-size:32px; }
+    .page-intro p{ margin:0; color:#dff3ff; opacity:0.9; }
+
+    /* Therapy detail blocks */
+    .therapy{
+      margin-top:32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(212,168,255,0.18);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+      scroll-margin-top: 90px;
+    }
+    .therapy-head{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+    .therapy-icon{ font-size:28px; }
+    .therapy h2{ margin:0; font-size:22px; }
+    .therapy .what-is{ color:#dff3ff; opacity:0.9; margin:0 0 16px 0; }
+    .therapy h3{ font-size:15px; color:var(--accent); margin:0 0 10px 0; text-transform:uppercase; letter-spacing:0.5px; }
+    .benefits-list{ list-style:none; margin:0 0 18px 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+    .benefits-list li{
+      background: rgba(255,255,255,0.03);
+      border-radius:8px;
+      padding:10px 12px;
+      font-size:14px;
+      color:#e8f8ff;
+      display:flex; gap:8px; align-items:flex-start;
+    }
+    .benefits-list li::before{ content:'✓'; color:var(--accent); font-weight:700; }
+    .therapy-note{ font-size:13px; color:#bfe7ff; opacity:0.85; margin:0 0 16px 0; }
+
+    /* Otras terapias list */
+    .other-list{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+    .other-list li{
+      background: rgba(255,255,255,0.03);
+      border-radius:8px; padding:12px 14px;
+    }
+    .other-list strong{ color:var(--accent); }
+
+    footer{ 
+      text-align: center; padding: 24px 18px; color: #cdeeff; opacity: 0.9;
+      margin-top: auto;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media (max-width:880px){
+      header{ padding: 12px; flex-direction: row; justify-content: space-between; align-items: center; }
+      .brand { font-size: 16px; }
+      .brand .logo { width: 40px; height: 40px; }
+      .menu-toggle { display: block; }
+      .nav-desktop {
+        display: none; position: absolute; top: 60px; left: 0; right: 0;
+        background: linear-gradient(180deg, rgba(61,42,92,0.95), rgba(26,0,51,0.95));
+        backdrop-filter: blur(6px);
+        flex-direction: column; padding: 12px; gap: 8px; z-index: 9;
+      }
+      .nav-desktop.active { display: flex; }
+      .nav-desktop .nav-buttons { flex-direction: column; gap: 8px; }
+      .nav-desktop .btn { width: 100%; text-align: left; }
+      .nav-buttons { flex-wrap: wrap; gap: 8px; }
+      .btn { padding: 8px 12px; font-size: 14px; }
+      .container { margin: 16px auto; padding: 0 12px; }
+      .page-intro h1 { font-size: 24px; }
+      .therapy { padding: 16px; }
+      .benefits-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">☯</div>
+      <div>
+        <div style="font-size:18px">Terapias Holísticas</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio, bienestar y atención personalizada</div>
+      </div>
+    </div>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="nav-desktop" id="navMenu">
+      <div class="nav-buttons">
+        <a href="index.html" class="btn">Inicio</a>
+        <a href="index.html#turno" class="btn">Turno</a>
+        <a href="index.html#libro" class="btn">Libro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-intro">
+      <div class="eyebrow">✦ Nuestras Terapias</div>
+      <h1>Conocé cada terapia y sus beneficios</h1>
+      <p>Cada persona llega con una necesidad distinta. Acá te contamos en qué consiste cada terapia, para qué te puede servir y qué podés esperar de la sesión, así elegís con más información antes de pedir tu turno.</p>
+    </section>
+
+    <!-- Reiki -->
+    <section class="therapy" id="reiki">
+      <div class="therapy-head">
+        <div class="therapy-icon">🤲</div>
+        <h2>Reiki</h2>
+      </div>
+      <p class="what-is">Técnica de sanación energética de origen japonés. A través de la imposición de manos, se canaliza energía para favorecer el equilibrio físico, emocional y mental.</p>
+      <h3>Beneficios</h3>
+      <ul class="benefits-list">
+        <li>Reduce el estrés y la ansiedad</li>
+        <li>Favorece la relajación profunda</li>
+        <li>Ayuda a liberar bloqueos emocionales</li>
+        <li>Mejora la calidad del sueño</li>
+        <li>Acompaña procesos de sanación física</li>
+        <li>Restablece el equilibrio energético general</li>
+      </ul>
+      <p class="therapy-note">Duración aproximada: 45–60 minutos. No requiere preparación previa.</p>
+      <a class="primary" href="index.html#turno">Pedir turno para Reiki</a>
+    </section>
+
+    <!-- Aromaterapia -->
+    <section class="therapy" id="aromaterapia">
+      <div class="therapy-head">
+        <div class="therapy-icon">🌿</div>
+        <h2>Aromaterapia</h2>
+      </div>
+      <p class="what-is">Uso terapéutico de aceites esenciales y esencias naturales para armonizar el estado de ánimo, aliviar tensiones y potenciar el bienestar general.</p>
+      <h3>Beneficios</h3>
+      <ul class="benefits-list">
+        <li>Alivia el estrés y la fatiga mental</li>
+        <li>Mejora el ánimo y la concentración</li>
+        <li>Favorece la relajación muscular</li>
+        <li>Ayuda a regular el sueño</li>
+        <li>Complementa otras terapias corporales</li>
+        <li>Blends personalizados según tu necesidad</li>
+      </ul>
+      <p class="therapy-note">Duración aproximada: 45 minutos. Se recomienda avisar si tenés alergias a algún aceite esencial.</p>
+      <a class="primary" href="index.html#turno">Pedir turno para Aromaterapia</a>
+    </section>
+
+    <!-- Terapia Floral -->
+    <section class="therapy" id="terapia-floral">
+      <div class="therapy-head">
+        <div class="therapy-icon">🌸</div>
+        <h2>Terapia Floral</h2>
+      </div>
+      <p class="what-is">Basada en las Flores de Bach y otras esencias florales, esta terapia trabaja sobre estados emocionales específicos mediante combinaciones personalizadas, sin efectos secundarios.</p>
+      <h3>Beneficios</h3>
+      <ul class="benefits-list">
+        <li>Ayuda a gestionar la ansiedad y el miedo</li>
+        <li>Acompaña procesos de duelo o cambio</li>
+        <li>Favorece la claridad emocional</li>
+        <li>Apoya el equilibrio en momentos de estrés</li>
+        <li>Combinaciones 100% personalizadas</li>
+        <li>Apta para niños, adultos y mascotas</li>
+      </ul>
+      <p class="therapy-note">Incluye una entrevista inicial para armar tu combinación floral personalizada.</p>
+      <a class="primary" href="index.html#turno">Pedir turno para Terapia Floral</a>
+    </section>
+
+    <!-- Otras terapias -->
+    <section class="therapy" id="otras-terapias">
+      <div class="therapy-head">
+        <div class="therapy-icon">✨</div>
+        <h2>Otras terapias</h2>
+      </div>
+      <p class="what-is">Además de las terapias principales, también ofrecemos estas prácticas complementarias:</p>
+      <ul class="other-list">
+        <li><strong>Masajes terapéuticos:</strong> alivian tensiones musculares y favorecen la relajación profunda.</li>
+        <li><strong>Terapia energética avanzada:</strong> técnicas de reequilibrio energético para procesos más profundos.</li>
+        <li><strong>Coaching holístico:</strong> acompañamiento para definir metas y sostener cambios de forma consciente.</li>
+      </ul>
+      <p class="therapy-note">¿Tenés dudas sobre cuál terapia se ajusta mejor a tu situación? Escribinos y te ayudamos a elegir.</p>
+      <a class="primary" href="index.html#turno">Consultar disponibilidad</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Terapias Holísticas — contacto y reservas por WhatsApp</div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+    document.querySelectorAll('.nav-desktop a').forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('active'));
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
