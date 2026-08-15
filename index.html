@@ -205,27 +205,54 @@
 }
     .more-tag{ display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; gap:10px; padding:22px; }
 
-    /* Practitioner card */
-    .practitioner{
-      width:320px;
-      min-width:260px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    /* Sobre mí (home) */
+    .sobre-mi-inicio{ margin-top:24px; width:100%; }
+    .contenedor-sobre-mi{
       display:flex;
-      flex-direction:column;
-      gap:12px;
+      gap:28px;
       align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(212,168,255,0.18);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
     }
-    .photo{
-      width:160px; height:160px; border-radius:14px; overflow:hidden; border:3px solid rgba(255,255,255,0.06);
-      cursor:pointer;
-      background: linear-gradient(45deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    .foto-perfil{
+      width:200px; height:200px; min-width:200px;
+      border-radius:50%; overflow:hidden;
+      border:3px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
-    .photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .bio{ text-align:center; color:#dff3ff; }
-    .certs-link{ color:var(--accent); text-decoration:underline; cursor:pointer; }
+    .foto-perfil img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .texto-perfil h2{ margin:0 0 4px 0; font-size:22px; }
+    .subtitulo-profesion{
+      margin:0 0 14px 0;
+      color:var(--accent);
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:0.8px;
+      font-weight:700;
+    }
+    .extracto-carta{
+      margin:0 0 14px 0;
+      color:#dff3ff;
+      opacity:0.92;
+      line-height:1.6;
+      font-size:15px;
+    }
+    .frase-cierre{
+      margin:0 0 16px 0;
+      color:#bfa8d9;
+      font-style:italic;
+      font-size:14px;
+    }
+    .boton-conoceme{
+      color:var(--accent);
+      font-weight:700;
+      font-size:15px;
+      text-decoration:none;
+    }
+    .boton-conoceme:hover{ text-decoration:underline; }
 
     /* Appointment form */
     .appointment{
@@ -289,16 +316,6 @@
     .book-info h4{ margin:0 0 8px 0; }
     .book-info p{ margin:0 0 12px 0; color:#dff3ff; }
 
-    /* Certifications section */
-    #certifications{
-      margin-top:20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      padding:18px;border-radius:12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
-    }
-    .cert-grid{ display:flex; gap:12px; flex-wrap:wrap; }
-    .cert{ min-width:150px; background:var(--glass); padding:10px;border-radius:8px; text-align:center; }
-
     @media (max-width:880px){
       header{ 
         padding: 12px; 
@@ -346,9 +363,15 @@
       }
      
       
-      .practitioner{ 
-  width: 100%; 
-  max-width: 420px;
+      .contenedor-sobre-mi{
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+      .foto-perfil{
+  width: 140px;
+  height: 140px;
+  min-width: 140px;
 }
       .nav-buttons {
         flex-wrap: wrap;
@@ -423,6 +446,7 @@
       <div class="nav-buttons">
         <a href="#turno" class="btn">Turno</a>
         <a href="#terapias" class="btn">Terapia</a>
+        <a href="sobre-mi.html" class="btn">Sobre mí</a>
         <a href="#libro" class="btn">Libro</a>
       </div>
     </nav>
@@ -483,18 +507,24 @@
      </div>
 
 
-      <aside class="practitioner" aria-labelledby="pract-name">
-        <div class="photo" id="photo-click" title="Ver certificaciones">
-          <!-- Reemplaza la imagen por la tuya -->
-          <img src="https://via.placeholder.com/400x400.png?text=Foto+Practicioner" alt="Foto de la practicante" />
+      <section class="sobre-mi-inicio">
+        <div class="contenedor-sobre-mi">
+          <div class="foto-perfil">
+            <img src="images/tu-foto-angela.jpeg" alt="Angela Paola Lorenzetti - Terapeuta Holística" />
+          </div>
+          <div class="texto-perfil">
+            <h2>Hola, soy Angela Paola Lorenzetti</h2>
+            <p class="subtitulo-profesion">Terapeuta Holística</p>
+            <p class="extracto-carta">
+              Luego de trabajar en cardiología, comprendí que el cuerpo, la mente y el espíritu están íntimamente interconectados. Desde hace diez años me dedico a integrar metodologías como la Biodecodificación, las Constelaciones Familiares y el Péndulo Hebreo para acompañarte a descifrar el mensaje detrás de tus síntomas y ordenar tu sistema.
+            </p>
+            <p class="frase-cierre">
+              <em>"El primer cambio se produce en el ser que elige algo diferente."</em>
+            </p>
+            <a href="sobre-mi.html" class="boton-conoceme">Conoce mi historia completa →</a>
+          </div>
         </div>
-        <div class="bio">
-          <div id="pract-name" style="font-weight:700; font-size:16px;">Nombre Apellido</div>
-          <div class="small-note">Terapeuta holística | Reiki, Aromaterapia, Flores</div>
-          <p style="margin-top:8px; font-size:14px">Trabajo personalizado con respeto, éticas y técnicas certificadas para acompañarte en tu proceso de bienestar.</p>
-          <div class="certs-link" onclick="document.getElementById('certifications').scrollIntoView({behavior:'smooth'})">Ver certificaciones ↗</div>
-        </div>
-      </aside>
+      </section>
     </section>
 
 
@@ -529,25 +559,6 @@
             <div style="flex:1" class="small-note">Se intentará abrir WhatsApp; si no logra abrirse, se redirige al calendario.</div>
           </div>
         </form>
-      </div>
-    </section>
-
-    <!-- Certificaciones -->
-    <section id="certifications" style="margin-top:20px;">
-      <h3>Certificaciones</h3>
-      <div class="cert-grid" aria-live="polite">
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+1" alt="Certificado 1" style="width:100%; border-radius:6px" />
-          <div style="margin-top:8px; font-size:13px">Curso XYZ - Institución A</div>
-        </div>
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+2" alt="Certificado 2" style="width:100%; border-radius:6px" />
-          <div style="margin-top:8px; font-size:13px">Formación en Reiki - Escuela B</div>
-        </div>
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+3" alt="Certificado 3" style="width:100%; border-radius:6px" />
-          <div style="margin-top:8px; font-size:13px">Aromaterapia - Instituto C</div>
-        </div>
       </div>
     </section>
 
@@ -646,14 +657,6 @@
 
         // Actualizar título
         document.title = cfg.siteName || document.title;
-        
-        // Actualizar nombre del practicante
-        const practNameEl = document.getElementById('pract-name');
-        if(practNameEl) practNameEl.textContent = cfg.practitioner?.name || 'Nombre Apellido';
-        
-        // Actualizar foto
-        const photoImg = document.querySelector('.photo img');
-        if(cfg.practitioner?.photo && photoImg) photoImg.src = cfg.practitioner.photo;
 
         // Generar cursos desde config.json
         const coursesContainer = document.querySelector('.courses');

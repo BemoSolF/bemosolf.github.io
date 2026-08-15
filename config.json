@@ -2,11 +2,6 @@
   "siteName": "Terapias Holísticas",
   "phone": "5493834263712",
   "googleCalendarUrl": "https://calendar.google.com/calendar/u/0/r",
-  "practitioner": {
-    "name": "Tu Nombre Completo",
-    "bio": "Terapeuta holística con X años de experiencia acompañando procesos de bienestar.",
-    "photo": "https://buddhoom.com/wp-content/uploads/2024/03/T.H-Queson-B.jpg"
-  },
   "courses": [
     {
       "title": "Curso de Reiki - Nivel 1",
