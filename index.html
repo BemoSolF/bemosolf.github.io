@@ -455,6 +455,7 @@
       <div class="nav-buttons">
         <a href="#turno" class="btn">Turno</a>
         <a href="#terapias" class="btn">Terapia</a>
+        <a href="#cursos" class="btn">Cursos</a>
         <a href="sobre-mi.html" class="btn">Sobre mí</a>
         <a href="#libro" class="btn">Libro</a>
       </div>
@@ -581,31 +582,24 @@
       <h3>Cursos y capacitaciones</h3>
       <div class="courses">
         <div class="course">
-          <h4>Curso de Reiki - Nivel 1</h4>
-          <p>Teoría, prácticas y pases energéticos. Duración: 2 días.</p>
-          <div class="payments">
-            <div class="pay-badge">PayPal: paypal.me/tuusuario</div>
-            <div class="pay-badge">MercadoPago</div>
-            <div class="pay-badge">Transferencia</div>
-          </div>
+          <h4>Curso en Péndulos</h4>
+          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 3 meses</div>
+          <p>Formación en el uso del Péndulo Hebreo para la limpieza energética, protección y equilibrio del sistema. Incluye teoría y práctica guiada.</p>
+          <a class="primary" href="comprar-curso.html?curso=pendulos" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
         </div>
 
         <div class="course">
-          <h4>Taller de Aromaterapia</h4>
-          <p>Elaboración de blends personales y uso terapéutico.</p>
-          <div class="payments">
-            <div class="pay-badge">MercadoPago</div>
-            <div class="pay-badge">Efectivo</div>
-          </div>
+          <h4>Biodecodificación</h4>
+          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 6 meses</div>
+          <p>Formación en Biodecodificación Cuántica para comprender el origen emocional de los síntomas físicos y acompañar procesos de autosanación.</p>
+          <a class="primary" href="comprar-curso.html?curso=biodecodificacion" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
         </div>
 
         <div class="course">
-          <h4>Capacitación en Flores de Bach</h4>
-          <p>Diagnóstico emocional y combinaciones de esencias.</p>
-          <div class="payments">
-            <div class="pay-badge">PayPal</div>
-            <div class="pay-badge">Transferencia</div>
-          </div>
+          <h4>Constelaciones</h4>
+          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 6 meses</div>
+          <p>Formación en Constelaciones Familiares para trabajar el orden del sistema familiar, liberar patrones repetitivos y sanar vínculos.</p>
+          <a class="primary" href="comprar-curso.html?curso=constelaciones" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
         </div>
       </div>
     </section>
@@ -680,10 +674,9 @@
             div.className = 'course';
             div.innerHTML = `
               <h4>${c.title}</h4>
+              ${c.duration ? `<div class="small-note" style="margin:-4px 0 8px 0;">Duración: ${c.duration}</div>` : ''}
               <p>${c.description || ''}</p>
-              <div class="payments">
-                ${(c.payments || []).map(p => `<div class="pay-badge">${p}</div>`).join('')}
-              </div>
+              <a class="primary" href="comprar-curso.html?curso=${encodeURIComponent(c.slug)}" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
             `;
             coursesContainer.appendChild(div);
           });

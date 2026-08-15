@@ -1,21 +1,25 @@
 {
   "siteName": "Terapias Holísticas",
   "phone": "5493834063386",
+  "paymentAlias": "alias.prueba.demo",
   "courses": [
     {
-      "title": "Curso de Reiki - Nivel 1",
-      "description": "Teoría, prácticas y pases energéticos. Duración: 2 días.",
-      "payments": ["PayPal: paypal.me/tuusuario", "MercadoPago", "Transferencia"]
+      "slug": "pendulos",
+      "title": "Curso en Péndulos",
+      "duration": "3 meses",
+      "description": "Formación en el uso del Péndulo Hebreo para la limpieza energética, protección y equilibrio del sistema. Incluye teoría y práctica guiada."
     },
     {
-      "title": "Taller de Aromaterapia",
-      "description": "Elaboración de blends personales y uso terapéutico.",
-      "payments": ["MercadoPago", "Efectivo"]
+      "slug": "biodecodificacion",
+      "title": "Biodecodificación",
+      "duration": "6 meses",
+      "description": "Formación en Biodecodificación Cuántica para comprender el origen emocional de los síntomas físicos y acompañar procesos de autosanación."
     },
     {
-      "title": "Capacitación en Flores de Bach",
-      "description": "Diagnóstico emocional y combinaciones de esencias.",
-      "payments": ["PayPal", "Transferencia"]
+      "slug": "constelaciones",
+      "title": "Constelaciones",
+      "duration": "6 meses",
+      "description": "Formación en Constelaciones Familiares para trabajar el orden del sistema familiar, liberar patrones repetitivos y sanar vínculos."
     }
   ]
 }
