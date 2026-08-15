@@ -1,5 +1,5 @@
 {
-  "siteName": "Terapias Holísticas",
+  "siteName": "Lumina Astral",
   "phone": "5493834063386",
   "paymentAlias": "alias.prueba.demo",
   "courses": [
@@ -20,6 +20,23 @@
       "title": "Constelaciones",
       "duration": "6 meses",
       "description": "Formación en Constelaciones Familiares para trabajar el orden del sistema familiar, liberar patrones repetitivos y sanar vínculos."
+    }
+  ],
+  "books": [
+    {
+      "slug": "libro-terapias-holisticas",
+      "title": "Terapias Holísticas: Camino al Bienestar Integral",
+      "description": "Un recorrido por las principales terapias holísticas y cómo integrarlas en tu vida diaria para avanzar hacia un bienestar integral."
+    },
+    {
+      "slug": "libro-limpiezas-energeticas",
+      "title": "Limpiezas Energéticas: Liberando el Peso Emocional",
+      "description": "Una guía para identificar y liberar las cargas emocionales que quedan atrapadas en el cuerpo y el campo energético, recuperando claridad y bienestar."
+    },
+    {
+      "slug": "libro-diario-sanacion",
+      "title": "Mi Diario de Sanación",
+      "description": "Un diario guiado con ejercicios y espacios de reflexión para acompañar tu proceso de sanación día a día."
     }
   ]
 }

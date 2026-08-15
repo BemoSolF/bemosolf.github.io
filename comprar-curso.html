@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Comprar curso — Terapias Holísticas</title>
+  <title>Comprar curso — Lumina Astral</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
   <style>
     :root{
@@ -117,6 +117,7 @@
     }
     input::placeholder{ color:#9fb9cc; }
     select option{ background:#3d2a5c; color:#e6f3ff; }
+    select optgroup{ background:#3d2a5c; color:#d4a8ff; font-style:normal; font-weight:700; }
     .small-note{ font-size:13px; color:#bfe7ff; opacity:0.9; }
 
     #pagoInfo{
@@ -172,8 +173,8 @@
     <a class="brand" href="index.html">
       <div class="logo" aria-hidden="true">☯</div>
       <div>
-        <div style="font-size:18px">Terapias Holísticas</div>
-        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio, bienestar y atención personalizada</div>
+        <div style="font-size:18px">Lumina Astral</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio y bienestar</div>
       </div>
     </a>
     <a href="index.html#cursos" class="btn">← Volver a Cursos</a>
@@ -183,17 +184,17 @@
     <div class="eyebrow">✦ Inscripción</div>
 
     <div class="course-card">
-      <h1>Inscripción a un curso</h1>
-      <p>Elegí el curso que querés hacer y completá tus datos para continuar con el pago.</p>
+      <h1>Comprar un curso o libro</h1>
+      <p>Elegí el curso o libro que querés y completá tus datos para continuar con el pago.</p>
     </div>
 
     <div class="panel">
       <h2>Tus datos</h2>
       <form id="compraForm">
         <div class="field">
-          <label for="curso">Curso</label>
+          <label for="curso">Curso o libro</label>
           <select id="curso" name="curso" required>
-            <option value="" disabled selected>Elegí un curso</option>
+            <option value="" disabled selected>Elegí una opción</option>
           </select>
         </div>
         <p id="cursoDescripcion" class="small-note" style="display:none;"></p>
@@ -216,7 +217,7 @@
 
     <div id="pagoInfo" style="display:none;">
       <h2>Datos para transferir</h2>
-      <p>Realizá la transferencia por el valor del curso <strong id="cursoTituloPago"></strong> al siguiente alias:</p>
+      <p>Realizá la transferencia por el valor de <strong id="cursoTituloPago"></strong> al siguiente alias:</p>
       <div class="alias-box">
         <strong id="aliasTexto">—</strong>
         <button type="button" class="copy-btn" id="copiarAlias">Copiar</button>
@@ -228,12 +229,12 @@
     </div>
 
     <div class="volver">
-      <a href="index.html#cursos">← Ver todos los cursos</a>
+      <a href="index.html#cursos">← Ver todos los cursos y libros</a>
     </div>
   </main>
 
   <footer>
-    <div>© <span id="year"></span> Terapias Holísticas — contacto y reservas por WhatsApp</div>
+    <div>© <span id="year"></span> Lumina Astral — contacto y reservas por WhatsApp</div>
   </footer>
 
   <script>
@@ -257,16 +258,25 @@
         paymentAlias: cfg.paymentAlias || 'alias.prueba.demo'
       };
 
-      const cursos = cfg.courses || [];
+      const cursos = [...(cfg.courses || []), ...(cfg.books || [])];
       const selectCurso = document.getElementById('curso');
       const descripcionEl = document.getElementById('cursoDescripcion');
 
-      cursos.forEach(c => {
-        const option = document.createElement('option');
-        option.value = c.slug;
-        option.textContent = c.duration ? `${c.title} (${c.duration})` : c.title;
-        selectCurso.appendChild(option);
-      });
+      function agregarGrupo(items, etiqueta){
+        if(!items.length) return;
+        const group = document.createElement('optgroup');
+        group.label = etiqueta;
+        items.forEach(c => {
+          const option = document.createElement('option');
+          option.value = c.slug;
+          option.textContent = c.duration ? `${c.title} (${c.duration})` : c.title;
+          group.appendChild(option);
+        });
+        selectCurso.appendChild(group);
+      }
+
+      agregarGrupo(cfg.courses || [], 'Cursos');
+      agregarGrupo(cfg.books || [], 'Libros');
 
       function actualizarDescripcion(){
         const curso = cursos.find(c => c.slug === selectCurso.value);
@@ -304,7 +314,7 @@
         pagoInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         const partes = [
-          `Hola, quiero enviar el comprobante de pago del curso "${curso.title}".`,
+          `Hola, ya hice la transferencia de "${curso.title}". Te comparto mis datos y a continuación te envío el comprobante.`,
           `Nombre: ${nombre}`,
           `WhatsApp: ${whatsapp}`,
           `Email: ${email}`
