@@ -4,17 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nuestras Terapias — Terapias Holísticas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
   <style>
-     :root{
-  --blue1:#3d2a5c;     
-  --blue2:#7a4fa1;     
-  --black:#1a0033;  
-  --card-bg: rgba(255,255,255,0.04);
-  --accent: #d4a8ff;    
-  --glass: rgba(255,255,255,0.06);
-  --max-width:1100px;
-  --radius:12px;
-}
+    :root{
+      --blue1:#3d2a5c;     
+      --blue2:#7a4fa1;     
+      --black:#1a0033;  
+      --card-bg: rgba(255,255,255,0.04);
+      --accent: #d4a8ff;    
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
+      --radius:12px;
+    }
 
     html { height: auto; }
 
@@ -54,8 +55,8 @@
         radial-gradient(2px 2px at 75px 160px, #ffffff, rgba(0,0,0,0)),
         radial-gradient(1.5px 1.5px at 140px 100px, #e0e0ff, rgba(0,0,0,0));
       background-repeat: repeat;
-    background-size: 150px 150px;
-    opacity: 0.18;
+      background-size: 200px 200px;
+      opacity: 0.08;
       pointer-events: none;
       z-index: 1;
     }
@@ -153,6 +154,51 @@
     }
     .other-list strong{ color:var(--accent); }
 
+    /* Tarjetas de terapia detalladas (con cápsulas de beneficios) */
+    .tarjeta-terapia{
+      margin-top:32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(212,168,255,0.18);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+      scroll-margin-top: 90px;
+    }
+    .tarjeta-terapia h3{
+      margin:0 0 14px 0;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .tarjeta-terapia h3 i{ color:var(--accent); font-size:26px; }
+    .tarjeta-terapia .introduccion{
+      color:#dff3ff; opacity:0.9; margin:0 0 20px 0; line-height:1.6;
+    }
+    .titulo-beneficios{
+      font-size:14px; color:var(--accent); margin:0 0 12px 0;
+      text-transform:uppercase; letter-spacing:0.8px; font-weight:700;
+    }
+    .contenedor-capsulas{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:12px; margin-bottom:22px;
+    }
+    .beneficio-capsula{
+      background: rgba(255,255,255,0.03);
+      border-radius:10px;
+      padding:14px;
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .beneficio-capsula i{ color:var(--accent); font-size:20px; margin-top:2px; flex-shrink:0; }
+    .beneficio-capsula strong{ display:block; color:#f3e8ff; font-size:14px; margin-bottom:2px; }
+    .beneficio-capsula span{ font-size:13px; color:#cfeaff; opacity:0.9; }
+    .detalles-practicos{ margin-bottom:20px; }
+    .detalles-practicos p{
+      font-size:13px; color:#bfe7ff; opacity:0.9; margin:0 0 6px 0;
+      display:flex; gap:8px; align-items:flex-start;
+    }
+    .detalles-practicos i{ color:var(--accent); margin-top:2px; flex-shrink:0; }
+
     footer{ 
       text-align: center; padding: 24px 18px; color: #cdeeff; opacity: 0.9;
       margin-top: auto;
@@ -180,6 +226,8 @@
       .page-intro h1 { font-size: 24px; }
       .therapy { padding: 16px; }
       .benefits-list { grid-template-columns: 1fr; }
+      .tarjeta-terapia { padding: 18px; }
+      .contenedor-capsulas { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -209,81 +257,181 @@
       <p>Cada persona llega con una necesidad distinta. Acá te contamos en qué consiste cada terapia, para qué te puede servir y qué podés esperar de la sesión, así elegís con más información antes de pedir tu turno.</p>
     </section>
 
-    <!-- Reiki -->
-    <section class="therapy" id="reiki">
-      <div class="therapy-head">
-        <div class="therapy-icon">🤲</div>
-        <h2>Reiki</h2>
-      </div>
-      <p class="what-is">Técnica de sanación energética de origen japonés. A través de la imposición de manos, se canaliza energía para favorecer el equilibrio físico, emocional y mental.</p>
-      <h3>Beneficios</h3>
-      <ul class="benefits-list">
-        <li>Reduce el estrés y la ansiedad</li>
-        <li>Favorece la relajación profunda</li>
-        <li>Ayuda a liberar bloqueos emocionales</li>
-        <li>Mejora la calidad del sueño</li>
-        <li>Acompaña procesos de sanación física</li>
-        <li>Restablece el equilibrio energético general</li>
-      </ul>
-      <p class="therapy-note">Duración aproximada: 45–60 minutos. No requiere preparación previa.</p>
-      <a class="primary" href="index.html#turno">Pedir turno para Reiki</a>
-    </section>
+    <!-- Constelaciones Familiares -->
+    <div id="constelaciones" class="tarjeta-terapia">
+      <h3><i class="ri-team-line"></i> Constelaciones Familiares</h3>
+      <p class="introduccion">Abordaje terapéutico que permite mirar los hilos invisibles de tu historia familiar. Al ordenar tu sistema, lográs soltar lealtades inconscientes, destrabar bloqueos del presente y reconciliarte con tus raíces.</p>
 
-    <!-- Aromaterapia -->
-    <section class="therapy" id="aromaterapia">
-      <div class="therapy-head">
-        <div class="therapy-icon">🌿</div>
-        <h2>Aromaterapia</h2>
+      <p class="titulo-beneficios">Beneficios</p>
+      <div class="contenedor-capsulas">
+        <div class="beneficio-capsula">
+          <i class="ri-bubble-chart-line"></i>
+          <div>
+            <strong>Liberación:</strong>
+            <span>Soltás cargas y mandatos que no te pertenecen.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-git-branch-line"></i>
+          <div>
+            <strong>Orden sistémico:</strong>
+            <span>Ocupás tu lugar correcto en la familia y la vida.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-loop-left-line"></i>
+          <div>
+            <strong>Sanación de patrones:</strong>
+            <span>Rompés dinámicas repetitivas en dinero o parejas.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-eye-line"></i>
+          <div>
+            <strong>Claridad profunda:</strong>
+            <span>Una nueva mirada de paz hacia tu historia.</span>
+          </div>
+        </div>
       </div>
-      <p class="what-is">Uso terapéutico de aceites esenciales y esencias naturales para armonizar el estado de ánimo, aliviar tensiones y potenciar el bienestar general.</p>
-      <h3>Beneficios</h3>
-      <ul class="benefits-list">
-        <li>Alivia el estrés y la fatiga mental</li>
-        <li>Mejora el ánimo y la concentración</li>
-        <li>Favorece la relajación muscular</li>
-        <li>Ayuda a regular el sueño</li>
-        <li>Complementa otras terapias corporales</li>
-        <li>Blends personalizados según tu necesidad</li>
-      </ul>
-      <p class="therapy-note">Duración aproximada: 45 minutos. Se recomienda avisar si tenés alergias a algún aceite esencial.</p>
-      <a class="primary" href="index.html#turno">Pedir turno para Aromaterapia</a>
-    </section>
 
-    <!-- Terapia Floral -->
-    <section class="therapy" id="terapia-floral">
-      <div class="therapy-head">
-        <div class="therapy-icon">🌸</div>
-        <h2>Terapia Floral</h2>
+      <div class="detalles-practicos">
+        <p><i class="ri-user-shared-line"></i> <strong>Modalidades:</strong> Individual, Grupal o Sobre el Agua (Fluido hidrosistémico).</p>
+        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 60-90 minutos. No requiere preparación previa.</p>
       </div>
-      <p class="what-is">Basada en las Flores de Bach y otras esencias florales, esta terapia trabaja sobre estados emocionales específicos mediante combinaciones personalizadas, sin efectos secundarios.</p>
-      <h3>Beneficios</h3>
-      <ul class="benefits-list">
-        <li>Ayuda a gestionar la ansiedad y el miedo</li>
-        <li>Acompaña procesos de duelo o cambio</li>
-        <li>Favorece la claridad emocional</li>
-        <li>Apoya el equilibrio en momentos de estrés</li>
-        <li>Combinaciones 100% personalizadas</li>
-        <li>Apta para niños, adultos y mascotas</li>
-      </ul>
-      <p class="therapy-note">Incluye una entrevista inicial para armar tu combinación floral personalizada.</p>
-      <a class="primary" href="index.html#turno">Pedir turno para Terapia Floral</a>
-    </section>
+      <a class="primary" href="index.html#turno">Pedir turno para Constelaciones Familiares</a>
+    </div>
 
-    <!-- Otras terapias -->
-    <section class="therapy" id="otras-terapias">
-      <div class="therapy-head">
-        <div class="therapy-icon">✨</div>
-        <h2>Otras terapias</h2>
+    <!-- Biodecodificación Cuántica -->
+    <div id="biodecodificacion" class="tarjeta-terapia">
+      <h3><i class="ri-mind-map-line"></i> Biodecodificación Cuántica</h3>
+      <p class="introduccion">Una metodología que descifra el mensaje oculto detrás de tus síntomas físicos y bloqueos emocionales. Busca el impacto cuántico y emocional original para desactivar los códigos de estrés de tu cuerpo.</p>
+
+      <p class="titulo-beneficios">Beneficios</p>
+      <div class="contenedor-capsulas">
+        <div class="beneficio-capsula">
+          <i class="ri-brain-line"></i>
+          <div>
+            <strong>Comprensión biológica:</strong>
+            <span>Entendés el para qué de tu síntoma o dolor.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-heart-pulse-line"></i>
+          <div>
+            <strong>Desactivación del estrés:</strong>
+            <span>Aliviás la tensión grabada en el cuerpo.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-node-tree"></i>
+          <div>
+            <strong>Consciencia cuántica:</strong>
+            <span>Conectás la mente con la salud celular.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-key-line"></i>
+          <div>
+            <strong>Autosanación:</strong>
+            <span>Encontrás la llave para tu propio bienestar integral.</span>
+          </div>
+        </div>
       </div>
-      <p class="what-is">Además de las terapias principales, también ofrecemos estas prácticas complementarias:</p>
-      <ul class="other-list">
-        <li><strong>Masajes terapéuticos:</strong> alivian tensiones musculares y favorecen la relajación profunda.</li>
-        <li><strong>Terapia energética avanzada:</strong> técnicas de reequilibrio energético para procesos más profundos.</li>
-        <li><strong>Coaching holístico:</strong> acompañamiento para definir metas y sostener cambios de forma consciente.</li>
-      </ul>
-      <p class="therapy-note">¿Tenés dudas sobre cuál terapia se ajusta mejor a tu situación? Escribinos y te ayudamos a elegir.</p>
-      <a class="primary" href="index.html#turno">Consultar disponibilidad</a>
-    </section>
+
+      <div class="detalles-practicos">
+        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60-90 minutos.</p>
+        <p><i class="ri-file-list-3-line"></i> Se recomienda traer anotados los síntomas a tratar.</p>
+      </div>
+      <a class="primary" href="index.html#turno">Pedir turno para Biodecodificación Cuántica</a>
+    </div>
+
+    <!-- Memoria Celular -->
+    <div id="memoria-celular" class="tarjeta-terapia">
+      <h3><i class="ri-database-2-line"></i> Memoria Celular</h3>
+      <p class="introduccion">Un viaje profundo al "disco duro" de tu cuerpo para limpiar traumas, miedos y mandatos inconscientes grabados a nivel celular desde la gestación o la infancia, permitiendo una reprogramación completa.</p>
+
+      <p class="titulo-beneficios">Beneficios</p>
+      <div class="contenedor-capsulas">
+        <div class="beneficio-capsula">
+          <i class="ri-dna-line"></i>
+          <div>
+            <strong>Reprogramación mental:</strong>
+            <span>Cambiás creencias limitantes por potenciadoras.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-lock-unlock-line"></i>
+          <div>
+            <strong>Superación de miedos:</strong>
+            <span>Aliviás fobias y bloqueos sin explicación obvia.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-shield-star-line"></i>
+          <div>
+            <strong>Fuerza interior:</strong>
+            <span>Recuperás la autoestima y tu poder personal.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-flashlight-line"></i>
+          <div>
+            <strong>Vitalidad renovada:</strong>
+            <span>Liberás la energía estancada en tus células.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detalles-practicos">
+        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60 minutos.</p>
+        <p><i class="ri-sun-line"></i> Un proceso suave, profundo y completamente liberador.</p>
+      </div>
+      <a class="primary" href="index.html#turno">Pedir turno para Memoria Celular</a>
+    </div>
+
+    <!-- Péndulo Hebreo -->
+    <div id="pendulo-hebreo" class="tarjeta-terapia">
+      <h3><i class="ri-magic-line"></i> Péndulo Hebreo</h3>
+      <p class="introduccion">Técnica de alta tecnología radiestésica que combina la vibración de la madera sagrada con las ondas de forma del alfabeto hebreo. Actúa detectando, limpiando y reseteando las capas de tu campo electromagnético.</p>
+
+      <p class="titulo-beneficios">Beneficios</p>
+      <div class="contenedor-capsulas">
+        <div class="beneficio-capsula">
+          <i class="ri-sparkling-2-line"></i>
+          <div>
+            <strong>Limpieza energética:</strong>
+            <span>Elimina larvas astrales y energías densas arraigadas.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-instance-line"></i>
+          <div>
+            <strong>Alineación de chakras:</strong>
+            <span>Restablece el flujo y equilibrio de tus centros vitales.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-shield-cross-line"></i>
+          <div>
+            <strong>Escudo protector:</strong>
+            <span>Sella y fortalece tu aura contra influencias externas.</span>
+          </div>
+        </div>
+        <div class="beneficio-capsula">
+          <i class="ri-feather-line"></i>
+          <div>
+            <strong>Ligereza inmediata:</strong>
+            <span>Sentís un alivio físico y mental profundo al despertar.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detalles-practicos">
+        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60 minutos.</p>
+        <p><i class="ri-battery-charge-line"></i> Ideal para momentos de estancamiento o fatiga extrema.</p>
+      </div>
+      <a class="primary" href="index.html#turno">Pedir turno para Péndulo Hebreo</a>
+    </div>
   </main>
 
   <footer>
