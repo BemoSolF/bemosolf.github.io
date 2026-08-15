@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nuestras Terapias — Lumina Astral</title>
+  <title>Cursos y Capacitaciones — Lumina Astral</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
   <style>
     :root{
-      --blue1:#3d2a5c;     
-      --blue2:#7a4fa1;     
-      --black:#1a0033;  
+      --blue1:#3d2a5c;
+      --blue2:#7a4fa1;
+      --black:#1a0033;
       --card-bg: rgba(255,255,255,0.04);
-      --accent: #d4a8ff;    
+      --accent: #d4a8ff;
       --glass: rgba(255,255,255,0.06);
       --max-width:1100px;
       --radius:12px;
@@ -38,7 +38,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: 
+      background-image:
         radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
         radial-gradient(1.5px 1.5px at 60px 70px, #e0e0ff, rgba(0,0,0,0)),
         radial-gradient(2px 2px at 50px 50px, #ffffff, rgba(0,0,0,0)),
@@ -119,43 +119,8 @@
     .page-intro h1{ margin:0 0 12px 0; font-size:32px; }
     .page-intro p{ margin:0; color:#dff3ff; opacity:0.9; }
 
-    /* Therapy detail blocks */
-    .therapy{
-      margin-top:32px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(212,168,255,0.18);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
-      scroll-margin-top: 90px;
-    }
-    .therapy-head{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
-    .therapy-icon{ font-size:28px; }
-    .therapy h2{ margin:0; font-size:22px; }
-    .therapy .what-is{ color:#dff3ff; opacity:0.9; margin:0 0 16px 0; }
-    .therapy h3{ font-size:15px; color:var(--accent); margin:0 0 10px 0; text-transform:uppercase; letter-spacing:0.5px; }
-    .benefits-list{ list-style:none; margin:0 0 18px 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
-    .benefits-list li{
-      background: rgba(255,255,255,0.03);
-      border-radius:8px;
-      padding:10px 12px;
-      font-size:14px;
-      color:#e8f8ff;
-      display:flex; gap:8px; align-items:flex-start;
-    }
-    .benefits-list li::before{ content:'✓'; color:var(--accent); font-weight:700; }
-    .therapy-note{ font-size:13px; color:#bfe7ff; opacity:0.85; margin:0 0 16px 0; }
-
-    /* Otras terapias list */
-    .other-list{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
-    .other-list li{
-      background: rgba(255,255,255,0.03);
-      border-radius:8px; padding:12px 14px;
-    }
-    .other-list strong{ color:var(--accent); }
-
-    /* Tarjetas de terapia detalladas (con cápsulas de beneficios) */
-    .tarjeta-terapia{
+    /* Courses section */
+    .course-card{
       margin-top:32px;
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       border: 1px solid rgba(212,168,255,0.18);
@@ -164,23 +129,19 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.28);
       scroll-margin-top: 90px;
     }
-    .tarjeta-terapia h3{
-      margin:0 0 14px 0;
-      font-size:22px;
-      display:flex;
-      align-items:center;
-      gap:10px;
+    .course-card h3{
+      margin:0 0 6px 0; font-size:22px;
+      display:flex; align-items:center; gap:10px;
     }
-    .tarjeta-terapia h3 i{ color:var(--accent); font-size:26px; }
-    .tarjeta-terapia .introduccion{
-      color:#dff3ff; opacity:0.9; margin:0 0 20px 0; line-height:1.6;
-    }
+    .course-card h3 i{ color:var(--accent); font-size:26px; }
+    .course-card .duracion{ font-size:13px; color:#bfe7ff; opacity:0.9; margin-bottom:14px; }
+    .course-card .introduccion{ color:#dff3ff; opacity:0.9; margin:0 0 20px 0; line-height:1.6; }
     .titulo-beneficios{
       font-size:14px; color:var(--accent); margin:0 0 12px 0;
       text-transform:uppercase; letter-spacing:0.8px; font-weight:700;
     }
     .contenedor-capsulas{
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:12px; margin-bottom:22px;
     }
     .beneficio-capsula{
@@ -198,8 +159,9 @@
       display:flex; gap:8px; align-items:flex-start;
     }
     .detalles-practicos i{ color:var(--accent); margin-top:2px; flex-shrink:0; }
+    .small-note{ font-size:13px; color:#bfe7ff; opacity:0.9; }
 
-    footer{ 
+    footer{
       text-align: center; padding: 24px 18px; color: #cdeeff; opacity: 0.9;
       margin-top: auto;
       background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
@@ -224,9 +186,7 @@
       .btn { padding: 8px 12px; font-size: 14px; }
       .container { margin: 16px auto; padding: 0 12px; }
       .page-intro h1 { font-size: 24px; }
-      .therapy { padding: 16px; }
-      .benefits-list { grid-template-columns: 1fr; }
-      .tarjeta-terapia { padding: 18px; }
+      .course-card { padding: 18px; }
       .contenedor-capsulas { grid-template-columns: 1fr; }
     }
   </style>
@@ -234,12 +194,12 @@
 <body>
   <header>
     <a class="brand" href="index.html">
-  <div class="logo" aria-hidden="true">☯</div>
-  <div>
-    <div style="font-size:18px">Lumina Astral</div>
-    <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio y bienestar</div>
-  </div>
-</a>
+      <div class="logo" aria-hidden="true">☯</div>
+      <div>
+        <div style="font-size:18px">Lumina Astral</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio y bienestar</div>
+      </div>
+    </a>
     <button class="menu-toggle" id="menuToggle">☰</button>
     <nav class="nav-desktop" id="navMenu">
       <div class="nav-buttons">
@@ -255,185 +215,144 @@
 
   <main class="container">
     <section class="page-intro">
-      <div class="eyebrow">✦ Nuestras Terapias</div>
-      <h1>Conocé cada terapia y sus beneficios</h1>
-      <p>Cada persona llega con una necesidad distinta. Acá te contamos en qué consiste cada terapia, para qué te puede servir y qué podés esperar de la sesión, así elegís con más información antes de pedir tu turno.</p>
+      <div class="eyebrow">✦ Formación</div>
+      <h1>Cursos y capacitaciones</h1>
+      <p>Formaciones para profundizar tu camino y, si querés, acompañar a otros en el suyo.</p>
     </section>
 
-    <!-- Constelaciones Familiares -->
-    <div id="constelaciones" class="tarjeta-terapia">
-      <h3><i class="ri-team-line"></i> Constelaciones Familiares</h3>
-      <p class="introduccion">Abordaje terapéutico que permite mirar los hilos invisibles de tu historia familiar. Al ordenar tu sistema, lográs soltar lealtades inconscientes, destrabar bloqueos del presente y reconciliarte con tus raíces.</p>
+    <!-- Curso en Péndulos -->
+    <div id="pendulos" class="course-card">
+      <h3><i class="ri-magic-line"></i> Curso en Péndulos</h3>
+      <div class="duracion">Duración: 3 meses</div>
+      <p class="introduccion">Formación teórico-práctica para aprender a usar el Péndulo Hebreo: cómo detectar, limpiar y resetear el campo energético, con protocolos claros para aplicar en vos mismo o en acompañamientos a otras personas.</p>
 
-      <p class="titulo-beneficios">Beneficios</p>
+      <p class="titulo-beneficios">Qué te llevás</p>
       <div class="contenedor-capsulas">
         <div class="beneficio-capsula">
-          <i class="ri-bubble-chart-line"></i>
+          <i class="ri-book-open-line"></i>
           <div>
-            <strong>Liberación:</strong>
-            <span>Soltás cargas y mandatos que no te pertenecen.</span>
+            <strong>Base teórica completa:</strong>
+            <span>Origen, fundamentos y alfabeto hebreo aplicado a la técnica.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-git-branch-line"></i>
+          <i class="ri-hand-heart-line"></i>
           <div>
-            <strong>Orden sistémico:</strong>
-            <span>Ocupás tu lugar correcto en la familia y la vida.</span>
+            <strong>Práctica guiada:</strong>
+            <span>Ejercicios paso a paso para ganar seguridad con el péndulo.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-loop-left-line"></i>
+          <i class="ri-shield-cross-line"></i>
           <div>
-            <strong>Sanación de patrones:</strong>
-            <span>Rompés dinámicas repetitivas en dinero o parejas.</span>
+            <strong>Protocolos de protección:</strong>
+            <span>Cómo limpiar y sellar el campo energético de forma segura.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-eye-line"></i>
+          <i class="ri-file-list-3-line"></i>
           <div>
-            <strong>Claridad profunda:</strong>
-            <span>Una nueva mirada de paz hacia tu historia.</span>
+            <strong>Material de apoyo:</strong>
+            <span>Guías y ejercicios para repasar a tu ritmo.</span>
           </div>
         </div>
       </div>
 
       <div class="detalles-practicos">
-        <p><i class="ri-user-shared-line"></i> <strong>Modalidades:</strong> Individual, Grupal o Sobre el Agua (Fluido hidrosistémico).</p>
-        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 60-90 minutos. No requiere preparación previa.</p>
+        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 3 meses, con acompañamiento durante todo el proceso.</p>
+        <p><i class="ri-user-shared-line"></i> <strong>Para quién:</strong> quienes quieran incorporar el péndulo a su práctica personal o profesional.</p>
       </div>
-      <a class="primary" href="index.html#turno">Solicitar turno</a>
+      <a class="primary" href="comprar-curso.html?curso=pendulos">Comprar</a>
     </div>
 
-    <!-- Biodecodificación Cuántica -->
-    <div id="biodecodificacion" class="tarjeta-terapia">
-     <h3><i class="ri-dna-line"></i> Biodecodificación Cuántica</h3>
-      <p class="introduccion">Una metodología que descifra el mensaje oculto detrás de tus síntomas físicos y bloqueos emocionales. Busca el impacto cuántico y emocional original para desactivar los códigos de estrés de tu cuerpo.</p>
+    <!-- Biodecodificación -->
+    <div id="biodecodificacion" class="course-card">
+      <h3><i class="ri-dna-line"></i> Biodecodificación</h3>
+      <div class="duracion">Duración: 6 meses</div>
+      <p class="introduccion">Programa para aprender a leer el mensaje emocional detrás de los síntomas físicos, entendiendo la conexión cuerpo-mente y desarrollando una mirada propia para acompañar procesos de autosanación.</p>
 
-      <p class="titulo-beneficios">Beneficios</p>
+      <p class="titulo-beneficios">Qué te llevás</p>
       <div class="contenedor-capsulas">
         <div class="beneficio-capsula">
           <i class="ri-brain-line"></i>
           <div>
             <strong>Comprensión biológica:</strong>
-            <span>Entendés el para qué de tu síntoma o dolor.</span>
+            <span>Cómo se conectan las emociones con los síntomas del cuerpo.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-heart-pulse-line"></i>
+          <i class="ri-search-eye-line"></i>
           <div>
-            <strong>Desactivación del estrés:</strong>
-            <span>Aliviás la tensión grabada en el cuerpo.</span>
+            <strong>Herramientas de lectura:</strong>
+            <span>Método para identificar el origen emocional de un síntoma.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-node-tree"></i>
+          <i class="ri-team-line"></i>
           <div>
-            <strong>Consciencia cuántica:</strong>
-            <span>Conectás la mente con la salud celular.</span>
+            <strong>Práctica supervisada:</strong>
+            <span>Espacio de acompañamiento para trabajar casos reales.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
           <i class="ri-key-line"></i>
           <div>
             <strong>Autosanación:</strong>
-            <span>Encontrás la llave para tu propio bienestar integral.</span>
+            <span>Un camino claro para aplicarlo primero en vos misma/o.</span>
           </div>
         </div>
       </div>
 
       <div class="detalles-practicos">
-        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60-90 minutos.</p>
-        <p><i class="ri-file-list-3-line"></i> Se recomienda traer anotados los síntomas a tratar.</p>
+        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 6 meses, con encuentros periódicos.</p>
+        <p><i class="ri-user-shared-line"></i> <strong>Para quién:</strong> quienes quieran profundizar en la conexión cuerpo-emoción, sin necesidad de experiencia previa.</p>
       </div>
-      <a class="primary" href="index.html#turno">Solicitar turno</a>
+      <a class="primary" href="comprar-curso.html?curso=biodecodificacion">Comprar</a>
     </div>
 
-    <!-- Memoria Celular -->
-    <div id="memoria-celular" class="tarjeta-terapia">
-      <h3><i class="ri-database-2-line"></i> Memoria Celular</h3>
-      <p class="introduccion">Un viaje profundo al "disco duro" de tu cuerpo para limpiar traumas, miedos y mandatos inconscientes grabados a nivel celular desde la gestación o la infancia, permitiendo una reprogramación completa.</p>
+    <!-- Constelaciones -->
+    <div id="constelaciones" class="course-card">
+      <h3><i class="ri-team-line"></i> Constelaciones</h3>
+      <div class="duracion">Duración: 6 meses</div>
+      <p class="introduccion">Formación en Constelaciones Familiares para comprender la dinámica del sistema familiar, identificar lealtades y patrones repetitivos, y aprender a facilitar procesos de orden y sanación.</p>
 
-      <p class="titulo-beneficios">Beneficios</p>
+      <p class="titulo-beneficios">Qué te llevás</p>
       <div class="contenedor-capsulas">
         <div class="beneficio-capsula">
-          <i class="ri-dna-line"></i>
+          <i class="ri-git-branch-line"></i>
           <div>
-            <strong>Reprogramación mental:</strong>
-            <span>Cambiás creencias limitantes por potenciadoras.</span>
+            <strong>Orden sistémico:</strong>
+            <span>Los principios que sostienen el equilibrio en una familia.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-lock-unlock-line"></i>
+          <i class="ri-loop-left-line"></i>
           <div>
-            <strong>Superación de miedos:</strong>
-            <span>Aliviás fobias y bloqueos sin explicación obvia.</span>
+            <strong>Patrones repetitivos:</strong>
+            <span>Cómo identificarlos y trabajar para liberarlos.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-shield-star-line"></i>
+          <i class="ri-group-line"></i>
           <div>
-            <strong>Fuerza interior:</strong>
-            <span>Recuperás la autoestima y tu poder personal.</span>
+            <strong>Dinámica grupal:</strong>
+            <span>Práctica con representantes en un espacio contenido.</span>
           </div>
         </div>
         <div class="beneficio-capsula">
-          <i class="ri-flashlight-line"></i>
+          <i class="ri-eye-line"></i>
           <div>
-            <strong>Vitalidad renovada:</strong>
-            <span>Liberás la energía estancada en tus células.</span>
+            <strong>Claridad profunda:</strong>
+            <span>Una nueva mirada para acompañar procesos familiares.</span>
           </div>
         </div>
       </div>
 
       <div class="detalles-practicos">
-        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60 minutos.</p>
-        <p><i class="ri-sun-line"></i> Un proceso suave, profundo y completamente liberador.</p>
+        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 6 meses, con encuentros grupales periódicos.</p>
+        <p><i class="ri-user-shared-line"></i> <strong>Para quién:</strong> quienes quieran comprender y trabajar la historia de su propio sistema familiar.</p>
       </div>
-      <a class="primary" href="index.html#turno">Solicitar turno</a>
-    </div>
-
-    <!-- Péndulo Hebreo -->
-    <div id="pendulo-hebreo" class="tarjeta-terapia">
-      <h3><i class="ri-magic-line"></i> Péndulo Hebreo</h3>
-      <p class="introduccion">Técnica de alta tecnología radiestésica que combina la vibración de la madera sagrada con las ondas de forma del alfabeto hebreo. Actúa detectando, limpiando y reseteando las capas de tu campo electromagnético.</p>
-
-      <p class="titulo-beneficios">Beneficios</p>
-      <div class="contenedor-capsulas">
-        <div class="beneficio-capsula">
-          <i class="ri-sparkling-2-line"></i>
-          <div>
-            <strong>Limpieza energética:</strong>
-            <span>Elimina larvas astrales y energías densas arraigadas.</span>
-          </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-instance-line"></i>
-          <div>
-            <strong>Alineación de chakras:</strong>
-            <span>Restablece el flujo y equilibrio de tus centros vitales.</span>
-          </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-shield-cross-line"></i>
-          <div>
-            <strong>Escudo protector:</strong>
-            <span>Sella y fortalece tu aura contra influencias externas.</span>
-          </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-mental-health-fill"></i>
-          <div>
-            <strong>Ligereza inmediata:</strong>
-            <span>Sentís un alivio físico y mental profundo al despertar.</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="detalles-practicos">
-        <p><i class="ri-time-line"></i> <strong>Duración aproximada:</strong> 60 minutos.</p>
-        <p><i class="ri-battery-charge-line"></i> Ideal para momentos de estancamiento o fatiga extrema.</p>
-      </div>
-      <a class="primary" href="index.html#turno">Solicitar turno</a>
+      <a class="primary" href="comprar-curso.html?curso=constelaciones">Comprar</a>
     </div>
   </main>
 
@@ -449,6 +368,7 @@
       link.addEventListener('click', () => navMenu.classList.remove('active'));
     });
     document.getElementById('year').textContent = new Date().getFullYear();
+
   </script>
 </body>
 </html>

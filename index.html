@@ -24,7 +24,7 @@
       padding: 0;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color: #e6f3ff;
-      background: linear-gradient(180deg, var(--blue2) 0%, var(--blue1) 50%, var(--black) 100%);
+      background: linear-gradient(180deg, var(--blue1) 0%, var(--black) 100%);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: relative;
@@ -297,58 +297,15 @@
       padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
     }
 
-    /* Courses section */
-    .courses{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:48px; margin-top:10px; }
-    .course{
-      background:var(--card-bg);
-      padding:14px;border-radius:10px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-    }
-    .payments{ display:flex; gap:8px; margin-top:10px; align-items:center; }
-    .pay-badge{
-      padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.03); font-size:13px;
-    }
-
-    footer{ 
-      text-align: center; 
-      padding: 24px 18px; 
-      color: #cdeeff; 
+    footer{
+      text-align: center;
+      padding: 24px 18px;
+      color: #cdeeff;
       opacity: 0.9;
       margin-top: auto;
       background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
       border-top: 1px solid rgba(255,255,255,0.05);
     }
-
-    /* Libro section */
-    .book{ display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; margin-top:10px; }
-    .book-cover{ width:220px; min-width:180px; }
-    .book-cover img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; display:block; }
-    .book-info{ flex:1 1 240px; min-width:240px; background:var(--glass); padding:16px; border-radius:10px; }
-    .book-info h4{ margin:0 0 8px 0; }
-    .book-info p{ margin:0 0 12px 0; color:#dff3ff; }
-
-    .book-slider{ position:relative; padding:0 44px; }
-    .book-viewport{ overflow:hidden; }
-    .book-slides{ display:flex; transition: transform .4s ease; }
-    .book-slide{ min-width:100%; }
-    .book-slider .book{ margin-top:10px; }
-    .slider-arrow{
-      position:absolute; top:90px; transform:translateY(-50%);
-      background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
-      color:#e6f3ff; width:38px; height:38px; border-radius:50%; cursor:pointer;
-      font-size:20px; line-height:1; display:flex; align-items:center; justify-content:center;
-      z-index:5; transition: background .18s ease;
-    }
-    .slider-arrow:hover{ background: rgba(255,255,255,0.14); }
-    .slider-arrow:focus{ outline:none; box-shadow:none; }
-    .slider-arrow:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-    .slider-arrow.prev{ left:0; }
-    .slider-arrow.next{ right:0; }
-    .slider-dots{ display:flex; justify-content:center; gap:8px; margin-top:16px; }
-    .slider-dot{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.25); border:none; cursor:pointer; padding:0; }
-    .slider-dot.active{ background: var(--accent); }
-    .slider-dot:focus{ outline:none; box-shadow:none; }
-    .slider-dot:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
     @media (max-width:880px){
       header{ 
@@ -450,18 +407,6 @@
         padding: 8px 10px;
         font-size: 16px;
       }
-      .courses {
-        grid-template-columns: 1fr;
-      }
-      .book-cover {
-        width: 140px;
-        min-width: 140px;
-        margin: 0 auto;
-      }
-      .book {
-        justify-content: center;
-        text-align: center;
-      }
     }
   </style>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
@@ -479,10 +424,10 @@
     <nav class="nav-desktop" id="navMenu">
       <div class="nav-buttons">
         <a href="#turno" class="btn">Turno</a>
-        <a href="#terapias" class="btn">Terapia</a>
-        <a href="#cursos" class="btn">Cursos</a>
+        <a href="terapias.html" class="btn">Terapia</a>
+        <a href="cursos.html" class="btn">Cursos</a>
         <a href="sobre-mi.html" class="btn">Sobre mí</a>
-        <a href="#libro" class="btn">Libro</a>
+        <a href="libro.html" class="btn">Libro</a>
       </div>
     </nav>
   </header>
@@ -602,101 +547,6 @@
       </div>
     </section>
 
-    <!-- Cursos y métodos de pago -->
-    <section id="cursos" style="margin-top:26px;">
-      <h3>Cursos y capacitaciones</h3>
-      <div class="courses">
-        <div class="course">
-          <h4>Curso en Péndulos</h4>
-          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 3 meses</div>
-          <p>Formación en el uso del Péndulo Hebreo para la limpieza energética, protección y equilibrio del sistema. Incluye teoría y práctica guiada.</p>
-          <a class="primary" href="comprar-curso.html?curso=pendulos" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
-        </div>
-
-        <div class="course">
-          <h4>Biodecodificación</h4>
-          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 6 meses</div>
-          <p>Formación en Biodecodificación Cuántica para comprender el origen emocional de los síntomas físicos y acompañar procesos de autosanación.</p>
-          <a class="primary" href="comprar-curso.html?curso=biodecodificacion" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
-        </div>
-
-        <div class="course">
-          <h4>Constelaciones</h4>
-          <div class="small-note" style="margin:-4px 0 8px 0;">Duración: 6 meses</div>
-          <p>Formación en Constelaciones Familiares para trabajar el orden del sistema familiar, liberar patrones repetitivos y sanar vínculos.</p>
-          <a class="primary" href="comprar-curso.html?curso=constelaciones" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Libro -->
-    <section id="libro" style="margin-top:26px;">
-      <h3>Trilogía</h3>
-      <div class="book-slider" id="bookSlider">
-       <div class="book-viewport">
-        <div class="book-slides" id="bookSlides">
-          <div class="book-slide">
-            <div class="book">
-              <div class="book-cover">
-                <img src="images/libro-terapias-holisticas.jpeg" alt="Portada del libro: Terapias Holísticas - Camino al Bienestar Integral" />
-              </div>
-              <div class="book-info">
-                <h4>Terapias Holísticas: Camino al Bienestar Integral</h4>
-                <p>Un recorrido por las principales terapias holísticas y cómo integrarlas en tu vida diaria para avanzar hacia un bienestar integral.</p>
-                <div class="payments" style="margin-bottom:12px;">
-                  <div class="pay-badge">PayPal</div>
-                  <div class="pay-badge">MercadoPago</div>
-                  <div class="pay-badge">Transferencia</div>
-                </div>
-                <a class="primary" href="comprar-curso.html?curso=libro-terapias-holisticas">Comprar libro</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="book-slide">
-            <div class="book">
-              <div class="book-cover">
-                <img src="images/libro-limpiezas-energeticas.jpeg" alt="Portada del libro: Limpiezas Energéticas - Liberando el peso emocional" />
-              </div>
-              <div class="book-info">
-                <h4>Limpiezas Energéticas: Liberando el Peso Emocional</h4>
-                <p>Una guía para identificar y liberar las cargas emocionales que quedan atrapadas en el cuerpo y el campo energético, recuperando claridad y bienestar.</p>
-                <div class="payments" style="margin-bottom:12px;">
-                  <div class="pay-badge">PayPal</div>
-                  <div class="pay-badge">MercadoPago</div>
-                  <div class="pay-badge">Transferencia</div>
-                </div>
-                <a class="primary" href="comprar-curso.html?curso=libro-limpiezas-energeticas">Comprar libro</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="book-slide">
-            <div class="book">
-              <div class="book-cover">
-                <img src="images/libro-diario-sanacion.jpeg" alt="Portada del libro: Mi Diario de Sanación" />
-              </div>
-              <div class="book-info">
-                <h4>Mi Diario de Sanación</h4>
-                <p>Un diario guiado con ejercicios y espacios de reflexión para acompañar tu proceso de sanación día a día.</p>
-                <div class="payments" style="margin-bottom:12px;">
-                  <div class="pay-badge">PayPal</div>
-                  <div class="pay-badge">MercadoPago</div>
-                  <div class="pay-badge">Transferencia</div>
-                </div>
-                <a class="primary" href="comprar-curso.html?curso=libro-diario-sanacion">Comprar libro</a>
-              </div>
-            </div>
-          </div>
-        </div>
-       </div>
-
-        <button class="slider-arrow prev" id="prevBook" aria-label="Libro anterior">‹</button>
-        <button class="slider-arrow next" id="nextBook" aria-label="Libro siguiente">›</button>
-        <div class="slider-dots" id="bookDots"></div>
-      </div>
-    </section>
-
     <footer>
       <div>© <span id="year"></span> Lumina Astral — Derechos Reservados</div>
     </footer>
@@ -717,33 +567,6 @@
       });
     });
 
-    // Carrusel de libros (trilogía)
-    (function bookSlider(){
-      const slides = document.getElementById('bookSlides');
-      const track = slides.children;
-      const total = track.length;
-      const dotsContainer = document.getElementById('bookDots');
-      let current = 0;
-
-      for(let i = 0; i < total; i++){
-        const dot = document.createElement('button');
-        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Ir al libro ${i + 1}`);
-        dot.addEventListener('click', () => irA(i));
-        dotsContainer.appendChild(dot);
-      }
-      const dots = dotsContainer.children;
-
-      function irA(index){
-        current = (index + total) % total;
-        slides.style.transform = `translateX(-${current * 100}%)`;
-        Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === current));
-      }
-
-      document.getElementById('prevBook').addEventListener('click', () => irA(current - 1));
-      document.getElementById('nextBook').addEventListener('click', () => irA(current + 1));
-    })();
-
     // Cargar config.json dinámicamente
     (async function loadConfig(){
       try{
@@ -751,33 +574,12 @@
         if(!res.ok) throw new Error('Error: ' + res.status);
         const cfg = await res.json();
 
-        // Guardar en CONFIG global
         window.CONFIG = {
           phone: cfg.phone || '5493834063386',
           siteName: cfg.siteName || 'Lumina Astral'
         };
 
-        // Actualizar título
         document.title = cfg.siteName || document.title;
-
-        // Generar cursos desde config.json
-        const coursesContainer = document.querySelector('.courses');
-        if(cfg.courses && coursesContainer){
-          coursesContainer.innerHTML = '';
-          cfg.courses.forEach(c => {
-            const div = document.createElement('div');
-            div.className = 'course';
-            div.innerHTML = `
-              <h4>${c.title}</h4>
-              ${c.duration ? `<div class="small-note" style="margin:-4px 0 8px 0;">Duración: ${c.duration}</div>` : ''}
-              <p>${c.description || ''}</p>
-              <a class="primary" href="comprar-curso.html?curso=${encodeURIComponent(c.slug)}" style="display:inline-block;margin-top:14px;text-decoration:none;">Comprar</a>
-            `;
-            coursesContainer.appendChild(div);
-          });
-        }
-
-        console.log('✓ Config cargada:', cfg);
       }catch(err){
         console.error('✗ Error:', err);
         window.CONFIG = {

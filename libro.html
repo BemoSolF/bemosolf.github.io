@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sobre mí — Lumina Astral</title>
+  <title>Libros — Lumina Astral</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" />
   <style>
     :root{
       --blue1:#3d2a5c;
-      --blue2:#573675;
+      --blue2:#7a4fa1;
       --black:#1a0033;
       --card-bg: rgba(255,255,255,0.04);
       --accent: #d4a8ff;
@@ -55,8 +55,8 @@
         radial-gradient(2px 2px at 75px 160px, #ffffff, rgba(0,0,0,0)),
         radial-gradient(1.5px 1.5px at 140px 100px, #e0e0ff, rgba(0,0,0,0));
       background-repeat: repeat;
-      background-size: 150px 150px;
-      opacity: 0.18;
+      background-size: 200px 200px;
+      opacity: 0.08;
       pointer-events: none;
       z-index: 1;
     }
@@ -119,40 +119,38 @@
     .page-intro h1{ margin:0 0 12px 0; font-size:32px; }
     .page-intro p{ margin:0; color:#dff3ff; opacity:0.9; }
 
-    /* Perfil completo */
-    .perfil-completo{
-      margin-top:32px;
-      display:flex;
-      gap:32px;
-      align-items:flex-start;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border: 1px solid rgba(212,168,255,0.18);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
-    }
-    .perfil-completo .foto-perfil{
-      width:220px; height:220px; min-width:220px;
-      border-radius:50%; overflow:hidden;
-      border:3px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .perfil-completo .foto-perfil img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .perfil-completo .texto-perfil p{ margin:0 0 16px 0; color:#dff3ff; opacity:0.92; line-height:1.7; font-size:15px; }
-    .perfil-completo .frase-cierre{
-      margin:0; color:var(--accent); font-style:italic; font-size:16px;
-    }
-    .firma{ margin-top:18px; color:#bfa8d9; font-size:14px; }
+    /* Libro section */
+    .book{ display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; margin-top:10px; }
+    .book-cover{ width:220px; min-width:180px; }
+    .book-cover img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; display:block; }
+    .book-info{ flex:1 1 240px; min-width:240px; background:var(--glass); padding:16px; border-radius:10px; }
+    .book-info h4{ margin:0 0 8px 0; }
+    .book-info p{ margin:0 0 12px 0; color:#dff3ff; }
+    .payments{ display:flex; gap:8px; margin-top:10px; align-items:center; flex-wrap:wrap; }
+    .pay-badge{ padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.03); font-size:13px; }
 
-    /* Certificaciones */
-    .certificaciones{ margin-top:32px; }
-    .certificaciones h2{ margin:0 0 16px 0; font-size:22px; }
-    .cert-grid{ display:flex; gap:12px; flex-wrap:wrap; }
-    .cert{ min-width:180px; flex:1 1 180px; background:var(--glass); padding:12px; border-radius:10px; text-align:center; }
-    .cert img{ width:100%; border-radius:6px; display:block; }
-    .cert div{ margin-top:8px; font-size:13px; color:#dff3ff; }
-
-    .volver-cta{ margin-top:32px; text-align:center; }
+    .book-slider{ position:relative; padding:0 44px; margin-top:24px; }
+    .book-viewport{ overflow:hidden; }
+    .book-slides{ display:flex; transition: transform .4s ease; }
+    .book-slide{ min-width:100%; }
+    .book-slider .book{ margin-top:10px; }
+    .slider-arrow{
+      position:absolute; top:90px; transform:translateY(-50%);
+      background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+      color:#e6f3ff; width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:20px; line-height:1; display:flex; align-items:center; justify-content:center;
+      z-index:5; transition: background .18s ease;
+    }
+    .slider-arrow:hover{ background: rgba(255,255,255,0.14); }
+    .slider-arrow:focus{ outline:none; box-shadow:none; }
+    .slider-arrow:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+    .slider-arrow.prev{ left:0; }
+    .slider-arrow.next{ right:0; }
+    .slider-dots{ display:flex; justify-content:center; gap:8px; margin-top:16px; }
+    .slider-dot{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.25); border:none; cursor:pointer; padding:0; }
+    .slider-dot.active{ background: var(--accent); }
+    .slider-dot:focus{ outline:none; box-shadow:none; }
+    .slider-dot:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
     footer{
       text-align: center; padding: 24px 18px; color: #cdeeff; opacity: 0.9;
@@ -179,20 +177,20 @@
       .btn { padding: 8px 12px; font-size: 14px; }
       .container { margin: 16px auto; padding: 0 12px; }
       .page-intro h1 { font-size: 24px; }
-      .perfil-completo{ flex-direction:column; align-items:center; text-align:center; padding:20px; }
-      .perfil-completo .foto-perfil{ width:160px; height:160px; min-width:160px; }
+      .book-cover { width: 140px; min-width: 140px; margin: 0 auto; }
+      .book { justify-content: center; text-align: center; }
     }
   </style>
 </head>
 <body>
   <header>
     <a class="brand" href="index.html">
-  <div class="logo" aria-hidden="true">☯</div>
-  <div>
-    <div style="font-size:18px">Lumina Astral</div>
-    <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio y bienestar</div>
-  </div>
-</a>
+      <div class="logo" aria-hidden="true">☯</div>
+      <div>
+        <div style="font-size:18px">Lumina Astral</div>
+        <div style="font-size:12px; color:#cfeaff; opacity:0.85">Equilibrio y bienestar</div>
+      </div>
+    </a>
     <button class="menu-toggle" id="menuToggle">☰</button>
     <nav class="nav-desktop" id="navMenu">
       <div class="nav-buttons">
@@ -208,49 +206,73 @@
 
   <main class="container">
     <section class="page-intro">
-      <div class="eyebrow">✦ Sobre mí</div>
-      <h1>Mi historia</h1>
-      <p>Conocé un poco más sobre mi recorrido, las metodologías que integro en cada sesión y las certificaciones que respaldan mi trabajo.</p>
+      <div class="eyebrow">✦ Trilogía</div>
+      <h1>Libros de Lumina Astral</h1>
+      <p>Tres libros pensados para acompañarte en distintos momentos de tu proceso de sanación.</p>
     </section>
 
-    <section class="perfil-completo">
-      <div class="foto-perfil">
-        <img src="images/tu-foto-angela.jpeg" alt="Angela Paola Lorenzetti - Terapeuta Holística" />
-      </div>
-      <div class="texto-perfil">
-        <p>
-          Luego de trabajar en cardiología, comprendí que el cuerpo, la mente y el espíritu están íntimamente interconectados. Ese fue el punto de partida de un camino que hoy lleva diez años de trabajo dedicado a la salud y el bienestar del ser, incursionando en distintas prácticas y metodologías para acompañar procesos reales de sanación.
-        </p>
-        <p>
-          Con el tiempo fui integrando la Biodecodificación Cuántica, las Constelaciones Familiares, la Memoria Celular y el Péndulo Hebreo — cada una aportando una mirada distinta sobre el mismo objetivo: descifrar el mensaje detrás de los síntomas y reordenar el sistema que los sostiene.
-        </p>
-        <p class="frase-cierre">
-          "El primer cambio se produce en el ser que elige algo diferente."
-        </p>
-        <div class="firma">Con amor y respeto,<br>Angela Paola Lorenzetti</div>
-      </div>
-    </section>
+    <div class="book-slider" id="bookSlider">
+     <div class="book-viewport">
+      <div class="book-slides" id="bookSlides">
+        <div class="book-slide">
+          <div class="book">
+            <div class="book-cover">
+              <img src="images/libro-terapias-holisticas.jpeg" alt="Portada del libro: Terapias Holísticas - Camino al Bienestar Integral" />
+            </div>
+            <div class="book-info">
+              <h4>Terapias Holísticas: Camino al Bienestar Integral</h4>
+              <p>Un recorrido por las principales terapias holísticas y cómo integrarlas en tu vida diaria para avanzar hacia un bienestar integral.</p>
+              <div class="payments" style="margin-bottom:12px;">
+                <div class="pay-badge">PayPal</div>
+                <div class="pay-badge">MercadoPago</div>
+                <div class="pay-badge">Transferencia</div>
+              </div>
+              <a class="primary" href="comprar-curso.html?curso=libro-terapias-holisticas">Comprar libro</a>
+            </div>
+          </div>
+        </div>
 
-    <section class="certificaciones">
-      <h2>Certificaciones</h2>
-      <div class="cert-grid" aria-live="polite">
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+1" alt="Certificado 1" />
-          <div>Curso XYZ - Institución A</div>
+        <div class="book-slide">
+          <div class="book">
+            <div class="book-cover">
+              <img src="images/libro-limpiezas-energeticas.jpeg" alt="Portada del libro: Limpiezas Energéticas - Liberando el peso emocional" />
+            </div>
+            <div class="book-info">
+              <h4>Limpiezas Energéticas: Liberando el Peso Emocional</h4>
+              <p>Una guía para identificar y liberar las cargas emocionales que quedan atrapadas en el cuerpo y el campo energético, recuperando claridad y bienestar.</p>
+              <div class="payments" style="margin-bottom:12px;">
+                <div class="pay-badge">PayPal</div>
+                <div class="pay-badge">MercadoPago</div>
+                <div class="pay-badge">Transferencia</div>
+              </div>
+              <a class="primary" href="comprar-curso.html?curso=libro-limpiezas-energeticas">Comprar libro</a>
+            </div>
+          </div>
         </div>
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+2" alt="Certificado 2" />
-          <div>Formación en Reiki - Escuela B</div>
-        </div>
-        <div class="cert">
-          <img src="https://via.placeholder.com/220x120.png?text=Certificado+3" alt="Certificado 3" />
-          <div>Aromaterapia - Instituto C</div>
+
+        <div class="book-slide">
+          <div class="book">
+            <div class="book-cover">
+              <img src="images/libro-diario-sanacion.jpeg" alt="Portada del libro: Mi Diario de Sanación" />
+            </div>
+            <div class="book-info">
+              <h4>Mi Diario de Sanación</h4>
+              <p>Un diario guiado con ejercicios y espacios de reflexión para acompañar tu proceso de sanación día a día.</p>
+              <div class="payments" style="margin-bottom:12px;">
+                <div class="pay-badge">PayPal</div>
+                <div class="pay-badge">MercadoPago</div>
+                <div class="pay-badge">Transferencia</div>
+              </div>
+              <a class="primary" href="comprar-curso.html?curso=libro-diario-sanacion">Comprar libro</a>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+     </div>
 
-    <div class="volver-cta">
-      <a href="index.html#turno" class="primary">Solicitar turno</a>
+      <button class="slider-arrow prev" id="prevBook" aria-label="Libro anterior">‹</button>
+      <button class="slider-arrow next" id="nextBook" aria-label="Libro siguiente">›</button>
+      <div class="slider-dots" id="bookDots"></div>
     </div>
   </main>
 
@@ -266,6 +288,33 @@
       link.addEventListener('click', () => navMenu.classList.remove('active'));
     });
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Carrusel de libros (trilogía)
+    (function bookSlider(){
+      const slides = document.getElementById('bookSlides');
+      const track = slides.children;
+      const total = track.length;
+      const dotsContainer = document.getElementById('bookDots');
+      let current = 0;
+
+      for(let i = 0; i < total; i++){
+        const dot = document.createElement('button');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Ir al libro ${i + 1}`);
+        dot.addEventListener('click', () => irA(i));
+        dotsContainer.appendChild(dot);
+      }
+      const dots = dotsContainer.children;
+
+      function irA(index){
+        current = (index + total) % total;
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      document.getElementById('prevBook').addEventListener('click', () => irA(current - 1));
+      document.getElementById('nextBook').addEventListener('click', () => irA(current + 1));
+    })();
   </script>
 </body>
 </html>
