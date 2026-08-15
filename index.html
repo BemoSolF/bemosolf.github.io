@@ -320,10 +320,33 @@
     /* Libro section */
     .book{ display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; margin-top:10px; }
     .book-cover{ width:220px; min-width:180px; }
-    .book-cover img{ width:100%; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.3); display:block; }
+    .book-cover img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.3); display:block; }
     .book-info{ flex:1 1 240px; min-width:240px; background:var(--glass); padding:16px; border-radius:10px; }
     .book-info h4{ margin:0 0 8px 0; }
     .book-info p{ margin:0 0 12px 0; color:#dff3ff; }
+
+    .book-slider{ position:relative; padding:0 44px; }
+    .book-viewport{ overflow:hidden; }
+    .book-slides{ display:flex; transition: transform .4s ease; }
+    .book-slide{ min-width:100%; }
+    .book-slider .book{ margin-top:10px; }
+    .slider-arrow{
+      position:absolute; top:90px; transform:translateY(-50%);
+      background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+      color:#e6f3ff; width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:20px; line-height:1; display:flex; align-items:center; justify-content:center;
+      z-index:5; transition: background .18s ease;
+    }
+    .slider-arrow:hover{ background: rgba(255,255,255,0.14); }
+    .slider-arrow:focus{ outline:none; box-shadow:none; }
+    .slider-arrow:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+    .slider-arrow.prev{ left:0; }
+    .slider-arrow.next{ right:0; }
+    .slider-dots{ display:flex; justify-content:center; gap:8px; margin-top:16px; }
+    .slider-dot{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.25); border:none; cursor:pointer; padding:0; }
+    .slider-dot.active{ background: var(--accent); }
+    .slider-dot:focus{ outline:none; box-shadow:none; }
+    .slider-dot:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
     @media (max-width:880px){
       header{ 
@@ -606,27 +629,70 @@
 
     <!-- Libro -->
     <section id="libro" style="margin-top:26px;">
-      <h3>Libro</h3>
-      <div class="book">
-        <div class="book-cover">
-          <img src="images/libro-limpiezas-energeticas.jpeg" alt="Portada del libro: Limpiezas Energéticas - Liberando el peso emocional" />
-        </div>
-        <div class="book-info">
-          <h4>Limpiezas Energéticas: Liberando el Peso Emocional</h4>
-          <p>Una guía para identificar y liberar las cargas emocionales que quedan atrapadas en el cuerpo y el campo energético, recuperando claridad y bienestar.</p>
-          <div class="payments" style="margin-bottom:12px;">
-            <div class="pay-badge">PayPal</div>
-            <div class="pay-badge">MercadoPago</div>
-            <div class="pay-badge">Transferencia</div>
+      <h3>Trilogía</h3>
+      <div class="book-slider" id="bookSlider">
+       <div class="book-viewport">
+        <div class="book-slides" id="bookSlides">
+          <div class="book-slide">
+            <div class="book">
+              <div class="book-cover">
+                <img src="images/libro-terapias-holisticas.jpeg" alt="Portada del libro: Terapias Holísticas - Camino al Bienestar Integral" />
+              </div>
+              <div class="book-info">
+                <h4>Terapias Holísticas: Camino al Bienestar Integral</h4>
+                <p>Un recorrido por las principales terapias holísticas y cómo integrarlas en tu vida diaria para avanzar hacia un bienestar integral.</p>
+                <div class="payments" style="margin-bottom:12px;">
+                  <div class="pay-badge">PayPal</div>
+                  <div class="pay-badge">MercadoPago</div>
+                  <div class="pay-badge">Transferencia</div>
+                </div>
+                <button class="primary" type="button">Comprar libro</button>
+              </div>
+            </div>
           </div>
-          <button class="primary" type="button">Comprar libro</button>
-        </div>
-      </div>
-    </section>
 
-    <section id="otras-terapias" style="margin-top:10px;">
-      <h3>Otras terapias</h3>
-      <p>Listado o sección con otras terapias disponibles (masajes, terapia energética avanzada, coaching holístico, etc.). Puedes enlazar aquí a páginas internas o abrir un modal con más info.</p>
+          <div class="book-slide">
+            <div class="book">
+              <div class="book-cover">
+                <img src="images/libro-limpiezas-energeticas.jpeg" alt="Portada del libro: Limpiezas Energéticas - Liberando el peso emocional" />
+              </div>
+              <div class="book-info">
+                <h4>Limpiezas Energéticas: Liberando el Peso Emocional</h4>
+                <p>Una guía para identificar y liberar las cargas emocionales que quedan atrapadas en el cuerpo y el campo energético, recuperando claridad y bienestar.</p>
+                <div class="payments" style="margin-bottom:12px;">
+                  <div class="pay-badge">PayPal</div>
+                  <div class="pay-badge">MercadoPago</div>
+                  <div class="pay-badge">Transferencia</div>
+                </div>
+                <button class="primary" type="button">Comprar libro</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="book-slide">
+            <div class="book">
+              <div class="book-cover">
+                <img src="images/libro-mi-diario-de-sanacion.jpeg" alt="Portada del libro: Mi Diario de Sanación" />
+              </div>
+              <div class="book-info">
+                <h4>Mi Diario de Sanación</h4>
+                <p>Un diario guiado con ejercicios y espacios de reflexión para acompañar tu proceso de sanación día a día.</p>
+                <div class="payments" style="margin-bottom:12px;">
+                  <div class="pay-badge">PayPal</div>
+                  <div class="pay-badge">MercadoPago</div>
+                  <div class="pay-badge">Transferencia</div>
+                </div>
+                <button class="primary" type="button">Comprar libro</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+
+        <button class="slider-arrow prev" id="prevBook" aria-label="Libro anterior">‹</button>
+        <button class="slider-arrow next" id="nextBook" aria-label="Libro siguiente">›</button>
+        <div class="slider-dots" id="bookDots"></div>
+      </div>
     </section>
 
     <footer>
@@ -648,6 +714,33 @@
         navMenu.classList.remove('active');
       });
     });
+
+    // Carrusel de libros (trilogía)
+    (function bookSlider(){
+      const slides = document.getElementById('bookSlides');
+      const track = slides.children;
+      const total = track.length;
+      const dotsContainer = document.getElementById('bookDots');
+      let current = 0;
+
+      for(let i = 0; i < total; i++){
+        const dot = document.createElement('button');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Ir al libro ${i + 1}`);
+        dot.addEventListener('click', () => irA(i));
+        dotsContainer.appendChild(dot);
+      }
+      const dots = dotsContainer.children;
+
+      function irA(index){
+        current = (index + total) % total;
+        slides.style.transform = `translateX(-${current * 100}%)`;
+        Array.from(dots).forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      document.getElementById('prevBook').addEventListener('click', () => irA(current - 1));
+      document.getElementById('nextBook').addEventListener('click', () => irA(current + 1));
+    })();
 
     // Cargar config.json dinámicamente
     (async function loadConfig(){
