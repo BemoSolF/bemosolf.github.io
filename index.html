@@ -146,7 +146,7 @@
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   border: 1px solid rgba(212,168,255,0.2);
   border-radius:var(--radius);
-  padding:20px 16px;
+  padding:16px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   transition: transform .14s ease, border-color .14s ease;
   cursor:pointer;
@@ -154,13 +154,52 @@
   color:inherit;
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:6px;
 }
 .tag:hover{ transform:translateY(-6px); border-color: var(--accent); }
-.tag-icon{ font-size:24px; }
-.tag h3{ margin:0; font-size:17px; }
-.tag p{ margin:0; color: #cfeaff; opacity:0.85; font-size:13px; flex:1; }
-.tag-more{ color:var(--accent); font-size:13px; font-weight:600; margin-top:4px; }
+.tag-icon{ font-size:18px; }
+.tag-label{
+  color:var(--accent);
+  font-weight:700;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.tag-subtitle{
+  font-size:12px;
+  color:#bfa8d9;
+  font-style:italic;
+  margin-bottom:2px;
+}
+.tag-points{
+  list-style:none;
+  margin:0 0 4px 0;
+  padding:0;
+  font-size:13px;
+  color:#e8f8ff;
+}
+.tag-points li{
+  padding-left:14px;
+  position:relative;
+  margin-bottom:3px;
+  opacity:0.9;
+}
+.tag-points li::before{
+  content:'›';
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:700;
+}
+.tag-more{
+  color:var(--accent);
+  font-size:13px;
+  font-weight:600;
+  margin-top:auto;
+}
 
     .more-tag{ display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; gap:10px; padding:22px; }
 
