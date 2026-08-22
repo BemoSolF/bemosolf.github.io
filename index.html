@@ -59,6 +59,19 @@
      opacity: 0.18;
       pointer-events: none;
       z-index: 1;
+      animation: starDrift 240s linear infinite, starTwinkle 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes starDrift {
+      from { background-position: 0 0; }
+      to { background-position: 150px 150px; }
+    }
+    @keyframes starTwinkle {
+      from { opacity: 0.13; }
+      to { opacity: 0.23; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body::before { animation: none; }
     }
 
     main {
