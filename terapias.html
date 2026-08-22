@@ -200,6 +200,13 @@
       display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:12px; margin-bottom:22px;
     }
+    .terapia-con-imagen{ display:flex; gap:28px; align-items:flex-start; }
+    .terapia-imagen{ flex:0 0 260px; max-width:260px; }
+    .terapia-imagen img{
+      width:100%; display:block; border-radius:12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .terapia-contenido{ flex:1 1 auto; min-width:0; }
     .beneficio-capsula{
       background: rgba(255,255,255,0.03);
       border-radius:10px;
@@ -261,6 +268,8 @@
       .benefits-list { grid-template-columns: 1fr; }
       .tarjeta-terapia { padding: 18px; }
       .contenedor-capsulas { grid-template-columns: 1fr; }
+      .terapia-con-imagen { flex-direction: column; }
+      .terapia-imagen { max-width: 220px; margin: 0 auto 20px auto; }
     }
   </style>
 </head>
@@ -296,46 +305,53 @@
 
     <!-- Constelaciones Familiares -->
     <div id="constelaciones" class="tarjeta-terapia">
-      <h3><i class="ri-team-line"></i> Constelaciones Familiares</h3>
-      <p class="introduccion">Las constelaciones familiares son una forma de ordenar las dinámicas de tu sistema familiar, honrar tus raíces y soltar cargas heredadas, permitiéndote avanzar en tu vida con mayor libertad y propósito.</p>
+      <div class="terapia-con-imagen">
+        <div class="terapia-imagen">
+          <img src="images/constelaciones-familiares.jpeg" alt="Constelaciones Familiares - Ordenando el sistema" />
+        </div>
+        <div class="terapia-contenido">
+          <h3><i class="ri-team-line"></i> Constelaciones Familiares</h3>
+          <p class="introduccion">Las constelaciones familiares son una forma de ordenar las dinámicas de tu sistema familiar, honrar tus raíces y soltar cargas heredadas, permitiéndote avanzar en tu vida con mayor libertad y propósito.</p>
 
-      <p class="titulo-beneficios">Beneficios</p>
-      <div class="contenedor-capsulas">
-        <div class="beneficio-capsula">
-          <i class="ri-git-branch-line"></i>
-          <div>
-            <strong>Mejores vínculos:</strong>
-            <span>Sanás relaciones tensas con padres, hijos o pareja.</span>
+          <p class="titulo-beneficios">Beneficios</p>
+          <div class="contenedor-capsulas">
+            <div class="beneficio-capsula">
+              <i class="ri-git-branch-line"></i>
+              <div>
+                <strong>Mejores vínculos:</strong>
+                <span>Sanás relaciones tensas con padres, hijos o pareja.</span>
+              </div>
+            </div>
+            <div class="beneficio-capsula">
+              <i class="ri-plant-line"></i>
+              <div>
+                <strong>Alivio emocional:</strong>
+                <span>Sentís paz y soltás culpas que no eran tuyas.</span>
+              </div>
+            </div>
+            <div class="beneficio-capsula">
+              <i class="ri-bubble-chart-line"></i>
+              <div>
+                <strong>Menos peso encima:</strong>
+                <span>Notás un alivio físico y emocional después de la sesión.</span>
+              </div>
+            </div>
+            <div class="beneficio-capsula">
+              <i class="ri-compass-3-line"></i>
+              <div>
+                <strong>Decisiones más claras:</strong>
+                <span>Ganás claridad para tomar decisiones importantes en tu vida.</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-plant-line"></i>
-          <div>
-            <strong>Alivio emocional:</strong>
-            <span>Sentís paz y soltás culpas que no eran tuyas.</span>
+
+          <div class="detalles-practicos">
+            <p><i class="ri-user-shared-line"></i> <strong>Modalidades:</strong> Individual, Grupal o Sobre el Agua (Fluido hidrosistémico).</p>
+            <p><i class="ri-time-line"></i> <strong>Duración:</strong> 60-90 minutos. No requiere preparación previa.</p>
           </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-bubble-chart-line"></i>
-          <div>
-            <strong>Menos peso encima:</strong>
-            <span>Notás un alivio físico y emocional después de la sesión.</span>
-          </div>
-        </div>
-        <div class="beneficio-capsula">
-          <i class="ri-compass-3-line"></i>
-          <div>
-            <strong>Decisiones más claras:</strong>
-            <span>Ganás claridad para tomar decisiones importantes en tu vida.</span>
-          </div>
+          <a class="primary" href="index.html#turno">Solicitar turno</a>
         </div>
       </div>
-
-      <div class="detalles-practicos">
-        <p><i class="ri-user-shared-line"></i> <strong>Modalidades:</strong> Individual, Grupal o Sobre el Agua (Fluido hidrosistémico).</p>
-        <p><i class="ri-time-line"></i> <strong>Duración:</strong> 60-90 minutos. No requiere preparación previa.</p>
-      </div>
-      <a class="primary" href="index.html#turno">Solicitar turno</a>
     </div>
 
     <!-- Biodecodificación Cuántica -->
