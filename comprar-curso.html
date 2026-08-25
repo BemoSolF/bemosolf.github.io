@@ -129,23 +129,6 @@
       border: 1px solid rgba(212,168,255,0.3);
     }
     #pagoInfo h2{ margin:0 0 12px 0; font-size:19px; }
-    .alias-box{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      background: rgba(0,0,0,0.25);
-      border-radius:10px;
-      padding:14px 16px;
-      margin:12px 0;
-    }
-    .alias-box strong{ font-size:17px; letter-spacing:0.5px; }
-    .copy-btn{
-      background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-      color:inherit; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:13px;
-    }
-    .copy-btn:hover{ background: rgba(255,255,255,0.14); }
-    .test-note{
-      font-size:12px; color:#ffd88a; background: rgba(255,180,60,0.1);
-      border:1px solid rgba(255,180,60,0.3); border-radius:8px; padding:8px 10px; margin-top:10px;
-    }
     .acompanamiento-note{
       font-size:13px; color:#dff3ff; background: rgba(212,168,255,0.08);
       border:1px solid rgba(212,168,255,0.25); border-radius:8px; padding:10px 12px; margin-top:14px;
@@ -171,7 +154,6 @@
 
     @media (max-width:600px){
       .course-card, .panel, #pagoInfo{ padding:18px; }
-      .alias-box{ flex-direction:column; align-items:flex-start; }
     }
   </style>
 </head>
@@ -217,25 +199,20 @@
           <label for="email">Email</label>
           <input id="email" name="email" type="email" placeholder="tu@email.com" required />
         </div>
-        <button class="primary" type="submit">Pagar</button>
-        <div class="small-note">Al continuar vas a ver los datos para realizar la transferencia.</div>
+        <button class="primary" type="submit">Continuar</button>
+        <div class="small-note">Al continuar te vamos a redirigir a WhatsApp para coordinar el pago con la terapeuta.</div>
       </form>
     </div>
 
     <div id="pagoInfo" style="display:none;">
-      <h2>Datos para transferir</h2>
-      <p>Realizá la transferencia por el valor de <strong id="cursoTituloPago"></strong> al siguiente alias:</p>
-      <div class="alias-box">
-        <strong id="aliasTexto">—</strong>
-        <button type="button" class="copy-btn" id="copiarAlias">Copiar</button>
-      </div>
-      <div class="test-note">⚠️ Este es un alias de prueba para revisión. Se va a reemplazar por el alias real antes de publicar el sitio.</div>
+      <h2>Coordiná tu compra por WhatsApp</h2>
+      <p>Escribinos por WhatsApp para completar la compra de <strong id="cursoTituloPago"></strong> — la terapeuta te va a pasar los datos para realizar el pago.</p>
       <div id="acompanamientoNote" class="acompanamiento-note" style="display:none;">
         <i class="ri-book-read-line"></i>
         <span>Vas a recibir un acompañamiento personalizado para ayudarte a comprender mejor la lectura de este libro.</span>
       </div>
       <a id="whatsappLink" class="primary whatsapp-btn" href="#" target="_blank" rel="noopener">
-        <i class="ri-whatsapp-line"></i> Enviar comprobante por WhatsApp
+        <i class="ri-whatsapp-line"></i> Solicitar compra por WhatsApp
       </a>
     </div>
 
@@ -265,8 +242,7 @@
       }
 
       window.CONFIG = {
-        phone: cfg.phone || '5493834063386',
-        paymentAlias: cfg.paymentAlias || 'alias.prueba.demo'
+        phone: cfg.phone || '5493834063386'
       };
 
       const cursos = [
@@ -308,8 +284,6 @@
       actualizarDescripcion();
       selectCurso.addEventListener('change', actualizarDescripcion);
 
-      document.getElementById('aliasTexto').textContent = window.CONFIG.paymentAlias;
-
       const form = document.getElementById('compraForm');
       const pagoInfo = document.getElementById('pagoInfo');
 
@@ -329,25 +303,15 @@
         pagoInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         const partes = [
-          `Hola, ya hice la transferencia de "${curso.title}". Te comparto mis datos y a continuación te envío el comprobante.`,
+          `Hola, quiero comprar "${curso.title}". Te paso mis datos:`,
           `Nombre: ${nombre}`,
           `WhatsApp: ${whatsapp}`,
-          `Email: ${email}`
+          `Email: ${email}`,
+          `¿Me pasás los datos para realizar el pago?`
         ];
         const texto = encodeURIComponent(partes.join('\n'));
         const numeroDestino = window.CONFIG.phone;
         document.getElementById('whatsappLink').href = `https://wa.me/${numeroDestino}?text=${texto}`;
-      });
-
-      document.getElementById('copiarAlias').addEventListener('click', async () => {
-        const btn = document.getElementById('copiarAlias');
-        try{
-          await navigator.clipboard.writeText(window.CONFIG.paymentAlias);
-          btn.textContent = '¡Copiado!';
-        }catch(err){
-          btn.textContent = 'No se pudo copiar';
-        }
-        setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
       });
     })();
   </script>
