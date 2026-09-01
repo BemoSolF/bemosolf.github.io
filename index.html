@@ -311,10 +311,10 @@
       padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
     }
 
-    .dias-turno, .horarios-turno{
+    .horarios-turno{
       display:flex; flex-wrap:wrap; gap:8px;
     }
-    .dia-btn, .hora-btn{
+    .hora-btn{
       padding:8px 12px;
       border-radius:8px;
       border: 1px solid rgba(255,255,255,0.12);
@@ -324,18 +324,91 @@
       font-size:13px;
       transition: background 0.15s, border-color 0.15s;
     }
-    .dia-btn:hover:not(:disabled), .hora-btn:hover{
+    .hora-btn:hover{
       border-color: var(--accent);
     }
-    .dia-btn.selected, .hora-btn.selected{
+    .hora-btn.selected{
       background: linear-gradient(90deg, var(--accent), #8a5cf6);
       color:#012;
       font-weight:700;
       border-color: transparent;
     }
-    .dia-btn:disabled{
-      opacity:0.35;
+
+    /* Calendario de turnos */
+    .calendario-turno{
+      max-width:320px;
+      margin:0 auto;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius:10px;
+      padding:14px;
+    }
+    .calendario-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .cal-mes-label{
+      font-size:14px;
+      font-weight:700;
+      color:#e8f8ff;
+      text-transform:capitalize;
+    }
+    .cal-nav{
+      width:28px; height:28px;
+      border-radius:50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color:#e8f8ff;
+      cursor:pointer;
+      font-size:15px;
+      line-height:1;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .cal-nav:hover:not(:disabled){ border-color: var(--accent); }
+    .cal-nav:disabled{ opacity:0.25; cursor:not-allowed; }
+    .calendario-dias-semana{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align:center;
+      font-size:11px;
+      color:#bfe7ff;
+      opacity:0.7;
+      margin-bottom:4px;
+    }
+    .calendario-grid{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap:4px;
+    }
+    .cal-dia{
+      aspect-ratio: 1 / 1;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:8px;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,0.03);
+      color:#e8f8ff;
+      font-size:13px;
+      cursor:pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .cal-dia.vacio{
+      background:transparent;
+      cursor:default;
+    }
+    .cal-dia.disponible:hover{
+      border-color: var(--accent);
+    }
+    .cal-dia.selected{
+      background: linear-gradient(90deg, var(--accent), #8a5cf6);
+      color:#012;
+      font-weight:700;
+    }
+    .cal-dia.no-disponible{
+      opacity:0.25;
       cursor:not-allowed;
+      background:transparent;
     }
 
     footer{
@@ -579,8 +652,16 @@
 
           <div class="field">
             <label>Elegí el día</label>
-            <div id="diasDisponibles" class="dias-turno">
-              <span class="small-note">Cargando disponibilidad...</span>
+            <div class="calendario-turno">
+              <div class="calendario-header">
+                <button type="button" id="mesAnterior" class="cal-nav" aria-label="Mes anterior">‹</button>
+                <span id="mesActual" class="cal-mes-label">Cargando...</span>
+                <button type="button" id="mesSiguiente" class="cal-nav" aria-label="Mes siguiente">›</button>
+              </div>
+              <div class="calendario-dias-semana">
+                <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+              </div>
+              <div class="calendario-grid" id="calendarioGrid"></div>
             </div>
           </div>
 
@@ -645,10 +726,24 @@
     })();
 
     // Selector de días/horarios disponibles (según disponibilidad real en Google Calendar)
+    const NOMBRES_MES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const NOMBRES_DIA_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
     let turnoSeleccionado = { date: null, time: null, label: null };
+    let disponibilidadMap = {};
+    let fechasVentana = [];
+    let mesVisible = null;
+
+    function pad2(n) { return String(n).padStart(2, '0'); }
+
+    function etiquetaFecha(fechaISO) {
+      const [y, m, d] = fechaISO.split('-').map(Number);
+      const diaSemana = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+      return `${NOMBRES_DIA_SEMANA[diaSemana]} ${d}/${m}`;
+    }
 
     async function cargarDisponibilidad() {
-      const contDias = document.getElementById('diasDisponibles');
+      const label = document.getElementById('mesActual');
       const wrapHorarios = document.getElementById('horariosWrap');
       wrapHorarios.style.display = 'none';
       turnoSeleccionado = { date: null, time: null, label: null };
@@ -658,28 +753,73 @@
         if (!res.ok) throw new Error('Error ' + res.status);
         const data = await res.json();
 
-        contDias.innerHTML = '';
-        data.dias.forEach((dia) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'dia-btn';
-          btn.textContent = dia.label;
-          if (!dia.slots.length) {
-            btn.disabled = true;
-            btn.title = 'Sin turnos disponibles';
-          } else {
-            btn.addEventListener('click', () => seleccionarDia(dia, btn));
-          }
-          contDias.appendChild(btn);
-        });
+        disponibilidadMap = {};
+        data.dias.forEach((dia) => { disponibilidadMap[dia.date] = dia.slots; });
+        fechasVentana = data.dias.map((dia) => dia.date).sort();
+
+        if (fechasVentana.length) {
+          const [y, m] = fechasVentana[0].split('-').map(Number);
+          mesVisible = { year: y, month: m };
+        } else {
+          const hoy = new Date();
+          mesVisible = { year: hoy.getFullYear(), month: hoy.getMonth() + 1 };
+        }
+
+        renderCalendario();
       } catch (err) {
         console.error('No se pudo cargar la disponibilidad:', err);
-        contDias.innerHTML = '<span class="small-note">No se pudo cargar la disponibilidad. Escribinos directamente por WhatsApp.</span>';
+        label.textContent = '—';
+        document.getElementById('calendarioGrid').innerHTML = '<span class="small-note">No se pudo cargar la disponibilidad. Escribinos directamente por WhatsApp.</span>';
       }
     }
 
-    function seleccionarDia(dia, btnDia) {
-      document.querySelectorAll('.dia-btn').forEach((b) => b.classList.remove('selected'));
+    function renderCalendario() {
+      const { year, month } = mesVisible;
+      document.getElementById('mesActual').textContent = `${NOMBRES_MES[month - 1]} ${year}`;
+
+      const grid = document.getElementById('calendarioGrid');
+      grid.innerHTML = '';
+
+      const primerDiaSemana = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
+      const diasEnMes = new Date(Date.UTC(year, month, 0)).getUTCDate();
+
+      for (let i = 0; i < primerDiaSemana; i++) {
+        const vacio = document.createElement('div');
+        vacio.className = 'cal-dia vacio';
+        grid.appendChild(vacio);
+      }
+
+      for (let d = 1; d <= diasEnMes; d++) {
+        const fechaISO = `${year}-${pad2(month)}-${pad2(d)}`;
+        const slots = disponibilidadMap[fechaISO];
+
+        const celda = document.createElement('button');
+        celda.type = 'button';
+        celda.textContent = d;
+
+        if (slots && slots.length) {
+          celda.className = 'cal-dia disponible';
+          celda.addEventListener('click', () => seleccionarDia(fechaISO, slots, celda));
+        } else {
+          celda.className = 'cal-dia no-disponible';
+          celda.disabled = true;
+          celda.title = 'Sin turnos disponibles';
+        }
+        grid.appendChild(celda);
+      }
+
+      const primerDelMesVisible = `${year}-${pad2(month)}-01`;
+      const primerDelMesSiguiente = (() => {
+        const sig = new Date(Date.UTC(year, month, 1));
+        return `${sig.getUTCFullYear()}-${pad2(sig.getUTCMonth() + 1)}-01`;
+      })();
+
+      document.getElementById('mesAnterior').disabled = !fechasVentana.some((f) => f < primerDelMesVisible);
+      document.getElementById('mesSiguiente').disabled = !fechasVentana.some((f) => f >= primerDelMesSiguiente);
+    }
+
+    function seleccionarDia(fechaISO, slots, btnDia) {
+      document.querySelectorAll('.cal-dia.selected').forEach((b) => b.classList.remove('selected'));
       btnDia.classList.add('selected');
       turnoSeleccionado = { date: null, time: null, label: null };
 
@@ -688,7 +828,8 @@
       cont.innerHTML = '';
       wrap.style.display = 'block';
 
-      dia.slots.forEach((hora) => {
+      const label = etiquetaFecha(fechaISO);
+      slots.forEach((hora) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'hora-btn';
@@ -696,11 +837,22 @@
         btn.addEventListener('click', () => {
           document.querySelectorAll('.hora-btn').forEach((b) => b.classList.remove('selected'));
           btn.classList.add('selected');
-          turnoSeleccionado = { date: dia.date, time: hora, label: dia.label };
+          turnoSeleccionado = { date: fechaISO, time: hora, label };
         });
         cont.appendChild(btn);
       });
     }
+
+    document.getElementById('mesAnterior').addEventListener('click', () => {
+      mesVisible.month--;
+      if (mesVisible.month < 1) { mesVisible.month = 12; mesVisible.year--; }
+      renderCalendario();
+    });
+    document.getElementById('mesSiguiente').addEventListener('click', () => {
+      mesVisible.month++;
+      if (mesVisible.month > 12) { mesVisible.month = 1; mesVisible.year++; }
+      renderCalendario();
+    });
 
     cargarDisponibilidad();
 
