@@ -1,0 +1,7 @@
+{
+  "name": "sol-program",
+  "private": true,
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  }
+}

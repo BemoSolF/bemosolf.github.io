@@ -567,7 +567,7 @@
 
           <div style="display:flex; flex-direction:column; gap:8px; align-items:center; margin-top:4px;">
             <button class="primary" type="submit">Solicitar por WhatsApp</button>
-            <div class="small-note">Se va a abrir WhatsApp con tu turno ya redactado.</div>
+            <div class="small-note">Se va a abrir WhatsApp con tu turno ya redactado. Si indicás fecha y hora, también se agenda automáticamente en el calendario.</div>
           </div>
         </form>
       </div>
@@ -645,6 +645,15 @@
       // Si el navegador bloqueó la ventana emergente, navega directo en la misma pestaña
       if (!nuevaVentana) {
         window.location.href = urlWhatsApp;
+      }
+
+      // Agendar automáticamente en Google Calendar (no bloquea el envío por WhatsApp)
+      if (date && time) {
+        fetch('/api/crear-turno', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, date, time, message })
+        }).catch((err) => console.error('No se pudo agendar en Google Calendar:', err));
       }
     });
   </script>
