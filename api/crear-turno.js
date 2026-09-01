@@ -1,4 +1,4 @@
-const { google } = require('googleapis');
+const { calcularDisponibilidad, slotEstaLibre, obtenerCalendarClient } = require('./_disponibilidad');
 
 function sumarUnaHora(date, time) {
   const [h, m] = time.split(':').map(Number);
@@ -31,14 +31,13 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const auth = new google.auth.JWT(
-      process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      null,
-      (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
-      ['https://www.googleapis.com/auth/calendar.events']
-    );
+    const dias = await calcularDisponibilidad();
+    if (!slotEstaLibre(dias, date, time)) {
+      res.status(409).json({ error: 'Ese horario ya no está disponible' });
+      return;
+    }
 
-    const calendar = google.calendar({ version: 'v3', auth });
+    const calendar = await obtenerCalendarClient();
 
     const evento = {
       summary: `Turno - ${name}`,

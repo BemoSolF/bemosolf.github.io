@@ -311,6 +311,33 @@
       padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:700;
     }
 
+    .dias-turno, .horarios-turno{
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .dia-btn, .hora-btn{
+      padding:8px 12px;
+      border-radius:8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      color:#e8f8ff;
+      cursor:pointer;
+      font-size:13px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .dia-btn:hover:not(:disabled), .hora-btn:hover{
+      border-color: var(--accent);
+    }
+    .dia-btn.selected, .hora-btn.selected{
+      background: linear-gradient(90deg, var(--accent), #8a5cf6);
+      color:#012;
+      font-weight:700;
+      border-color: transparent;
+    }
+    .dia-btn:disabled{
+      opacity:0.35;
+      cursor:not-allowed;
+    }
+
     footer{
       text-align: center;
       padding: 24px 18px;
@@ -551,13 +578,15 @@
           </div>
 
           <div class="field">
-            <label for="date">Fecha preferida</label>
-            <input id="date" name="date" type="date" />
+            <label>Elegí el día</label>
+            <div id="diasDisponibles" class="dias-turno">
+              <span class="small-note">Cargando disponibilidad...</span>
+            </div>
           </div>
 
-          <div class="field">
-            <label for="time">Hora aproximada</label>
-            <input id="time" name="time" type="time" lang="es-AR" />
+          <div class="field" id="horariosWrap" style="display:none;">
+            <label>Elegí el horario</label>
+            <div id="horariosDisponibles" class="horarios-turno"></div>
           </div>
 
           <div class="field">
@@ -567,7 +596,7 @@
 
           <div style="display:flex; flex-direction:column; gap:8px; align-items:center; margin-top:4px;">
             <button class="primary" type="submit">Solicitar por WhatsApp</button>
-            <div class="small-note">Se va a abrir WhatsApp con tu turno ya redactado. Si indicás fecha y hora, también se agenda automáticamente en el calendario.</div>
+            <div class="small-note">Se va a agendar automáticamente en el calendario y se abre WhatsApp con tu turno ya redactado.</div>
           </div>
         </form>
       </div>
@@ -615,24 +644,103 @@
       }
     })();
 
-    // Envío del formulario de turno por WhatsApp
+    // Selector de días/horarios disponibles (según disponibilidad real en Google Calendar)
+    let turnoSeleccionado = { date: null, time: null, label: null };
+
+    async function cargarDisponibilidad() {
+      const contDias = document.getElementById('diasDisponibles');
+      const wrapHorarios = document.getElementById('horariosWrap');
+      wrapHorarios.style.display = 'none';
+      turnoSeleccionado = { date: null, time: null, label: null };
+
+      try {
+        const res = await fetch('/api/turnos-disponibles');
+        if (!res.ok) throw new Error('Error ' + res.status);
+        const data = await res.json();
+
+        contDias.innerHTML = '';
+        data.dias.forEach((dia) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'dia-btn';
+          btn.textContent = dia.label;
+          if (!dia.slots.length) {
+            btn.disabled = true;
+            btn.title = 'Sin turnos disponibles';
+          } else {
+            btn.addEventListener('click', () => seleccionarDia(dia, btn));
+          }
+          contDias.appendChild(btn);
+        });
+      } catch (err) {
+        console.error('No se pudo cargar la disponibilidad:', err);
+        contDias.innerHTML = '<span class="small-note">No se pudo cargar la disponibilidad. Escribinos directamente por WhatsApp.</span>';
+      }
+    }
+
+    function seleccionarDia(dia, btnDia) {
+      document.querySelectorAll('.dia-btn').forEach((b) => b.classList.remove('selected'));
+      btnDia.classList.add('selected');
+      turnoSeleccionado = { date: null, time: null, label: null };
+
+      const wrap = document.getElementById('horariosWrap');
+      const cont = document.getElementById('horariosDisponibles');
+      cont.innerHTML = '';
+      wrap.style.display = 'block';
+
+      dia.slots.forEach((hora) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'hora-btn';
+        btn.textContent = hora;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.hora-btn').forEach((b) => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          turnoSeleccionado = { date: dia.date, time: hora, label: dia.label };
+        });
+        cont.appendChild(btn);
+      });
+    }
+
+    cargarDisponibilidad();
+
+    // Envío del formulario de turno: agenda en Calendar y abre WhatsApp
     const turnoForm = document.getElementById('turnoForm');
 
-    turnoForm.addEventListener('submit', (e) => {
+    turnoForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('name').value.trim();
       const phone = document.getElementById('phone').value.trim();
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
       const message = document.getElementById('message').value.trim();
+
+      if (!turnoSeleccionado.date || !turnoSeleccionado.time) {
+        alert('Por favor elegí un día y un horario disponible para tu turno.');
+        return;
+      }
+
+      const { date, time, label } = turnoSeleccionado;
+
+      try {
+        const res = await fetch('/api/crear-turno', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, date, time, message })
+        });
+        if (res.status === 409) {
+          alert('Ese horario ya fue reservado por otra persona. Por favor elegí otro.');
+          cargarDisponibilidad();
+          return;
+        }
+      } catch (err) {
+        console.error('No se pudo agendar en Google Calendar:', err);
+      }
 
       const partes = [
         `Hola, quiero pedir un turno.`,
         `Nombre: ${name}`,
         phone ? `Mi teléfono: ${phone}` : null,
-        date ? `Fecha preferida: ${date}` : null,
-        time ? `Hora aproximada: ${time}` : null,
+        `Día y hora: ${label} ${time}hs`,
         message ? `Motivo: ${message}` : null
       ].filter(Boolean);
 
@@ -645,15 +753,6 @@
       // Si el navegador bloqueó la ventana emergente, navega directo en la misma pestaña
       if (!nuevaVentana) {
         window.location.href = urlWhatsApp;
-      }
-
-      // Agendar automáticamente en Google Calendar (no bloquea el envío por WhatsApp)
-      if (date && time) {
-        fetch('/api/crear-turno', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, date, time, message })
-        }).catch((err) => console.error('No se pudo agendar en Google Calendar:', err));
       }
     });
   </script>
